@@ -3,106 +3,114 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Supply Chain Org — IranHotel</title>
+  <title>IranHotel | Supply Chain Org Chart</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap" rel="stylesheet">
 
-  <!-- Export as PNG (html2canvas) -->
+  <!-- Export PNG -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
   <style>
     :root{
-      --bg:#f4f6fb;
+      --bg1:#0b1220;
+      --bg2:#0a1a2f;
       --paper:#ffffff;
+      --card:#f6f8fc;
+      --card2:#eef2f8;
       --text:#0f172a;
       --muted:#64748b;
-      --line:#c7cfe0;
-
-      --shadow:0 18px 44px rgba(15,23,42,.12);
-      --shadow2:0 12px 26px rgba(15,23,42,.10);
-
-      --dom:#2563eb; --dom2:#1d4ed8;
-      --for:#16a34a; --for2:#15803d;
-      --pan:#f59e0b; --pan2:#b45309;
-      --cap:#7c3aed; --cap2:#5b21b6;
-
-      --head:#0f172a;
-      --r:18px;
-      --gap:18px;
+      --border: rgba(15,23,42,.10);
+      --shadow: 0 20px 60px rgba(2,6,23,.18);
+      --shadow2: 0 12px 26px rgba(2,6,23,.10);
+      --radius: 20px;
+      --radius2: 16px;
+      --line1:#cbd5e1;
+      --line2:#94a3b8;
+      --primary:#0f172a;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: Vazirmatn, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
       color: var(--text);
-    }
-    .wrap{max-width:1600px;margin:0 auto;padding:18px 16px 44px;}
-    .paper{
-      background:var(--paper);
-      border-radius:24px;
-      box-shadow: var(--shadow);
-      border:1px solid rgba(15,23,42,.06);
-      padding:18px;
-      position:relative;
-      overflow:hidden;
+      background:
+        radial-gradient(1200px 600px at 70% -10%, rgba(56,189,248,.18), transparent 60%),
+        radial-gradient(900px 520px at 10% 0%, rgba(34,197,94,.12), transparent 55%),
+        linear-gradient(180deg, #f2f5fb 0%, #eef2f7 45%, #e9eef6 100%);
     }
 
-    /* ===== header ===== */
-    .topHeader{
+    /* ====== Header ====== */
+    .siteHeader{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.72);
+      border-bottom: 1px solid rgba(15,23,42,.06);
+    }
+    .headerInner{
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 12px 16px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 12px;
-      padding: 6px 6px 14px;
-      flex-wrap:wrap;
     }
-    .brandLeft{
+    .brandMini{
       display:flex;
       align-items:center;
-      gap: 12px;
+      gap: 10px;
       min-width:0;
-      flex: 1 1 520px;
     }
-    .logoBox{
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      background: #fff;
+    .brandMini .logo{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      overflow:hidden;
       border: 1px solid rgba(15,23,42,.10);
+      box-shadow: 0 10px 18px rgba(2,6,23,.10);
+      background: #fff;
+      flex:0 0 auto;
       display:grid;
       place-items:center;
-      overflow:hidden;
-      box-shadow: 0 10px 22px rgba(15,23,42,.08);
-      flex:0 0 auto;
     }
-    .logoBox img{width:100%;height:100%;object-fit:cover;display:block}
-    .brandText{min-width:0}
-    .brandText .t1{
-      font-weight:900;
-      font-size: 14px;
-      color:#111827;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
+    .brandMini .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .brandMini .txt{
+      display:flex;flex-direction:column;gap:2px;
+      min-width:0;
     }
-    .brandText .t2{
-      font-weight:700;
-      font-size: 12px;
-      color: var(--muted);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
+    .brandMini .txt .t1{font-weight:900;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brandMini .txt .t2{font-weight:800;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-    .headerRight{
+    .nav{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .nav a{
+      text-decoration:none;
+      color: rgba(15,23,42,.85);
+      font-weight: 900;
+      font-size: 12px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.65);
+      transition: .15s ease;
+    }
+    .nav a:hover{transform: translateY(-1px); background:#fff}
+
+    .headerActions{
       display:flex;
       gap: 10px;
       align-items:center;
-      flex: 0 0 auto;
-      flex-wrap:wrap;
+      justify-content:flex-end;
     }
     .btn{
       border:1px solid rgba(15,23,42,.12);
@@ -115,43 +123,130 @@
       cursor:pointer;
       box-shadow: 0 10px 20px rgba(15,23,42,.06);
     }
-    .btn:hover{transform:translateY(-1px)}
-    .btn:active{transform:translateY(0)}
     .btn.primary{
       background: #0f172a;
       color: #fff;
       border-color: rgba(255,255,255,.12);
     }
+    .btn:hover{transform: translateY(-1px)}
+    .btn:active{transform: translateY(0)}
 
-    /* Search */
-    .searchBox{
+    /* Search icon input */
+    .searchWrap{
+      position:relative;
       display:flex;
-      gap:10px;
       align-items:center;
-      flex: 1 1 360px;
-      min-width: 260px;
-      justify-content:flex-end;
+      gap: 8px;
     }
-    .searchBox input{
-      width: min(520px, 100%);
+    .searchBtn{
+      width: 40px;height: 40px;
       border-radius: 14px;
-      border:1px solid rgba(15,23,42,.12);
+      border: 1px solid rgba(15,23,42,.10);
+      background: #fff;
+      cursor:pointer;
+      display:grid;place-items:center;
+      box-shadow: 0 10px 18px rgba(2,6,23,.06);
+    }
+    .searchBtn svg{width:18px;height:18px;opacity:.8}
+    .searchInput{
+      width: 0;
+      opacity:0;
+      pointer-events:none;
+      transition: .18s ease;
+      border-radius: 14px;
+      border: 1px solid rgba(15,23,42,.10);
       padding: 11px 12px;
       font-family: inherit;
-      font-weight: 800;
-      font-size: 12.5px;
+      font-weight: 900;
+      font-size: 12px;
       outline:none;
       background:#fff;
-      box-shadow: 0 10px 20px rgba(15,23,42,.04);
+      box-shadow: 0 10px 18px rgba(2,6,23,.06);
     }
-    .hint{
-      font-size: 12px;
-      font-weight: 800;
-      color: rgba(15,23,42,.62);
-      white-space:nowrap;
+    .searchWrap.open .searchInput{
+      width: min(420px, 46vw);
+      opacity:1;
+      pointer-events:auto;
     }
 
-    /* ===== chart layout ===== */
+    /* ====== Layout ====== */
+    .wrap{
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 16px 16px 44px;
+    }
+
+    /* Hero center */
+    .hero{
+      margin-top: 14px;
+      background: linear-gradient(135deg, rgba(15,23,42,.92), rgba(2,6,23,.94));
+      color:#fff;
+      border-radius: 26px;
+      padding: 22px 18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;inset:-40px;
+      background:
+        radial-gradient(400px 220px at 20% 20%, rgba(56,189,248,.28), transparent 60%),
+        radial-gradient(420px 240px at 80% 30%, rgba(34,197,94,.20), transparent 60%),
+        radial-gradient(520px 300px at 55% 120%, rgba(245,158,11,.18), transparent 60%);
+      filter: blur(0px);
+      opacity:.95;
+    }
+    .heroInner{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap:wrap;
+      text-align:center;
+    }
+    .heroLogo{
+      width: 64px;height:64px;
+      border-radius: 20px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 18px 40px rgba(0,0,0,.30);
+      flex:0 0 auto;
+    }
+    .heroLogo img{width:100%;height:100%;object-fit:cover;display:block}
+    .heroTitle{
+      display:flex;flex-direction:column;gap:6px;
+      align-items:center;
+      justify-content:center;
+    }
+    .heroTitle h1{
+      margin:0;
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: .2px;
+    }
+    .heroTitle p{
+      margin:0;
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(255,255,255,.82);
+      line-height: 1.9;
+    }
+
+    /* stage */
+    .paper{
+      margin-top: 16px;
+      background: var(--paper);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,23,42,.06);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
     #lines{
       position:absolute; inset:0;
       width:100%; height:100%;
@@ -159,31 +254,61 @@
       z-index:1;
     }
 
-    .stack{display:flex;flex-direction:column;gap:12px}
-    .center{align-items:center}
+    /* Top node */
+    .topRow{
+      display:flex;
+      justify-content:center;
+      position:relative;
+      z-index:2;
+      padding: 10px 0 18px;
+    }
+
+    /* Columns */
     .grid{
       display:grid;
       grid-template-columns: repeat(4, minmax(300px, 1fr));
       gap: 18px;
       position:relative;
       z-index:2;
+      align-items:start;
     }
-    .col{
-      display:flex;
-      flex-direction:column;
-      gap: 12px;
-      min-width:0;
-    }
-    .sectionBody{
-      display:flex;
-      flex-direction:column;
-      gap: 12px;
-      min-width:0;
-    }
+    .col{display:flex;flex-direction:column;gap: 12px;min-width:0}
+    .sectionBody{display:flex;flex-direction:column;gap:12px}
 
-    /* domestic special blocks */
+    /* Team header */
+    .teamHeader{
+      background: linear-gradient(180deg, #fff, #fbfcff);
+      border: 1px solid rgba(15,23,42,.10);
+      border-radius: 18px;
+      padding: 12px;
+      box-shadow: 0 12px 26px rgba(2,6,23,.06);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      min-width:0;
+    }
+    .teamHeader .t{
+      display:flex;flex-direction:column;gap:3px;
+      min-width:0;
+    }
+    .teamHeader .t .a{font-weight:950;font-size:14px}
+    .teamHeader .t .b{font-weight:800;font-size:11px;color:var(--muted)}
+    .teamHeader .btnTiny{
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(15,23,42,.04);
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-weight: 950;
+      font-size: 12px;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .teamHeader .btnTiny:hover{background: rgba(15,23,42,.07)}
+
+    /* Domestic manager blocks */
     .managerBlock{
-      background: rgba(248,250,252,.9);
+      background: linear-gradient(180deg, var(--card), #fff);
       border:1px solid rgba(15,23,42,.08);
       border-radius: 18px;
       padding: 12px;
@@ -204,7 +329,7 @@
       top: 0; bottom: 0;
       right: 6px;
       width: 2px;
-      background: rgba(199,207,224,.9);
+      background: rgba(203,213,225,.95);
       border-radius: 999px;
     }
     .subItem{ position:relative; }
@@ -216,37 +341,31 @@
       transform: translateY(-50%);
       width: 12px;
       height: 2px;
-      background: rgba(199,207,224,.9);
+      background: rgba(203,213,225,.95);
       border-radius: 999px;
     }
 
-    /* ===== cards ===== */
+    /* Person cards */
     .card{
-      background:#fff;
+      background: var(--card);
       border-radius: 18px;
-      border:1px solid rgba(15,23,42,.10);
+      border: 1px solid rgba(15,23,42,.10);
       box-shadow: var(--shadow2);
-      padding: 12px 12px;
+      padding: 12px;
       display:flex;
       align-items:center;
       gap: 12px;
       min-width:0;
     }
     .card.head{
-      background: var(--head);
+      background: linear-gradient(180deg, #0f172a, #111b2f);
       color:#fff;
       border:none;
-      box-shadow: 0 18px 46px rgba(15,23,42,.24);
-      cursor:default;
-      max-width: 620px;
-      width: min(620px, 100%);
+      box-shadow: 0 22px 60px rgba(2,6,23,.28);
+      max-width: 760px;
+      width: min(760px, 100%);
+      cursor: default;
     }
-    .card.team{
-      box-shadow: none;
-      border: 1.5px solid rgba(15,23,42,.18);
-      background: #fff;
-    }
-
     .card.person{
       cursor:pointer;
       user-select:none;
@@ -254,36 +373,19 @@
     }
     .card.person:hover{transform: translateY(-2px)}
     .card.person:active{transform: translateY(0)}
-    .card.person.hidden{ display:none !important; }
-
-    /* highlight search hit */
+    .card.person.hidden{display:none !important;}
     .card.person.hit{
-      outline: 3px solid rgba(37,99,235,.22);
-      box-shadow: 0 18px 44px rgba(37,99,235,.16);
+      outline: 3px solid rgba(59,130,246,.18);
+      box-shadow: 0 22px 60px rgba(59,130,246,.14);
     }
-
-    /* team color accents */
-    .accent{
-      width: 10px;
-      height: 46px;
-      border-radius: 999px;
-      margin-inline-start: auto;
-      flex:0 0 auto;
-      opacity:.95;
-    }
-    .accent.dom{background: linear-gradient(180deg, var(--dom), var(--dom2));}
-    .accent.for{background: linear-gradient(180deg, var(--for), var(--for2));}
-    .accent.pan{background: linear-gradient(180deg, var(--pan), var(--pan2));}
-    .accent.cap{background: linear-gradient(180deg, var(--cap), var(--cap2));}
-    .card.head .accent{ background: rgba(255,255,255,.22); }
 
     .avatar{
       width: 46px;
       height: 46px;
       border-radius: 14px;
       overflow:hidden;
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(37,99,235,.08);
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(59,130,246,.10);
       display:grid;
       place-items:center;
       flex:0 0 auto;
@@ -293,990 +395,361 @@
       border-color: rgba(255,255,255,.22);
       background: rgba(255,255,255,.10);
     }
-    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .initials{
-      font-weight: 900;
-      font-size: 12px;
-      letter-spacing: .6px;
-      color: rgba(15,23,42,.78);
-    }
-    .card.head .initials{ color:#fff; }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+    .initials{font-weight:950;font-size:12px;letter-spacing:.6px;color:rgba(15,23,42,.75)}
+    .card.head .initials{color:#fff}
 
     .meta{display:flex;flex-direction:column;gap:4px;min-width:0}
     .name{
-      font-weight: 900;
-      font-size: 14.6px;
-      line-height:1.25;
-      white-space: normal;
+      font-weight: 950;
+      font-size: 14.5px;
+      line-height: 1.25;
       word-break: break-word;
     }
     .role{
-      font-weight: 700;
-      font-size: 12.2px;
-      line-height:1.25;
+      font-weight: 850;
+      font-size: 12px;
       color: var(--muted);
-      white-space: normal;
+      line-height: 1.25;
       word-break: break-word;
     }
-    .card.head .role{ color: rgba(255,255,255,.85); }
+    .card.head .role{color: rgba(255,255,255,.85)}
 
     .pill{
+      margin-inline-start:auto;
       font-size: 11px;
-      font-weight: 900;
+      font-weight: 950;
       padding: 6px 10px;
       border-radius: 999px;
       border:1px solid rgba(15,23,42,.10);
-      background: rgba(15,23,42,.04);
+      background: rgba(15,23,42,.05);
       color:#0f172a;
       white-space:nowrap;
       flex:0 0 auto;
     }
     .pill.vacant{
       background: rgba(245,158,11,.14);
-      border-style: dashed;
+      border-style:dashed;
       border-color: rgba(245,158,11,.55);
       color: #7a5b00;
     }
-    .pill.dom{ background: rgba(37,99,235,.12); color:#1d4ed8; border-color: rgba(37,99,235,.25); }
-    .pill.for{ background: rgba(22,163,74,.12); color:#15803d; border-color: rgba(22,163,74,.25); }
-    .pill.pan{ background: rgba(245,158,11,.14); color:#92400e; border-color: rgba(245,158,11,.28); }
-    .pill.cap{ background: rgba(124,58,237,.12); color:#5b21b6; border-color: rgba(124,58,237,.25); }
-
     .scorePill{
       font-size: 11px;
-      font-weight: 900;
+      font-weight: 950;
       padding: 6px 10px;
       border-radius: 999px;
-      border:1px solid rgba(15,23,42,.10);
-      background: rgba(15,23,42,.04);
-      color:#0f172a;
-      white-space:nowrap;
-      flex:0 0 auto;
-      display:none;
-    }
-    .scorePill.show{ display:inline-flex; align-items:center; gap:6px; }
-    .dot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background:#94a3b8;
-    }
-    .dot.good{ background:#16a34a; }
-    .dot.mid{ background:#f59e0b; }
-    .dot.low{ background:#ef4444; }
-
-    .teamDutiesBtn{
-      margin-inline-start:auto;
-      border:none;
-      background: rgba(15,23,42,.06);
-      border:1px solid rgba(15,23,42,.10);
-      border-radius: 12px;
-      padding: 8px 10px;
-      font-weight: 900;
-      font-size: 12px;
-      cursor:pointer;
-      flex:0 0 auto;
-    }
-    .teamDutiesBtn:hover{ background: rgba(15,23,42,.09); }
-
-    /* ===== modal ===== */
-    .modalBack{
-      position:fixed; inset:0;
-      background: rgba(2,6,23,.62);
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(15,23,42,.05);
       display:none;
       align-items:center;
-      justify-content:center;
-      padding: 18px;
-      z-index: 9999;
+      gap:6px;
+      flex:0 0 auto;
     }
-    .modalBack.open{ display:flex; }
+    .scorePill.show{display:inline-flex}
+    .dot{width:8px;height:8px;border-radius:999px;background:#94a3b8}
+    .dot.good{background:#16a34a}
+    .dot.mid{background:#f59e0b}
+    .dot.low{background:#ef4444}
 
-    .modal{
-      width: min(980px, 100%);
-      background: #fff;
-      border-radius: 24px;
-      border: 1px solid rgba(15,23,42,.12);
-      box-shadow: 0 34px 90px rgba(0,0,0,.35);
+    /* Sections (About/Contact) */
+    section{
+      max-width: 1600px;
+      margin: 18px auto 0;
+      padding: 0 16px;
+    }
+    .sectionCard{
+      background: rgba(255,255,255,.80);
+      border: 1px solid rgba(15,23,42,.08);
+      border-radius: 26px;
+      box-shadow: 0 18px 50px rgba(2,6,23,.12);
+      padding: 18px;
       overflow:hidden;
     }
-    .modalHead{
-      padding: 16px;
-      display:flex;
-      gap: 14px;
-      align-items:center;
-      background: linear-gradient(180deg, rgba(248,250,252,.92), #fff);
-      border-bottom:1px solid rgba(15,23,42,.08);
-    }
-    .modalHead .avatar{
-      width: 64px; height:64px; border-radius: 18px;
-      cursor: zoom-in;
-    }
-    .modalHead .name{ font-size: 18px; }
-    .modalHead .role{ font-size: 13px; }
-    .modalHeadRight{
-      margin-inline-start:auto;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .iconBtn{
-      border:1px solid rgba(15,23,42,.12);
-      background:#fff;
-      border-radius: 14px;
-      padding: 10px 12px;
-      font-weight: 900;
-      font-size: 12px;
-      cursor:pointer;
-    }
-    .iconBtn.primary{
-      background:#0f172a;
-      color:#fff;
-      border-color: rgba(255,255,255,.12);
-    }
-
-    .tabs{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      padding: 12px 14px;
-      border-bottom:1px solid rgba(15,23,42,.08);
-      background: rgba(248,250,252,.70);
-    }
-    .tab{
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-weight: 900;
-      font-size: 12px;
-      border:1px solid rgba(15,23,42,.10);
-      background:#fff;
-      cursor:pointer;
-    }
-    .tab.active{
-      background:#0f172a;
-      color:#fff;
-      border-color: rgba(15,23,42,.22);
-    }
-
-    .tabContent{ display:none; padding: 14px 16px 18px; }
-    .tabContent.active{ display:block; }
-
-    .sectionTitle{
-      font-weight: 900;
-      font-size: 13px;
-      color: rgba(15,23,42,.78);
+    .sectionCard h2{
       margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 950;
     }
-
-    .leadText{
-      line-height: 2;
-      color: rgba(15,23,42,.88);
-      font-weight: 700;
-      background: rgba(15,23,42,.03);
-      border:1px solid rgba(15,23,42,.07);
-      border-radius: 16px;
-      padding: 12px;
-    }
-
-    ul.clean{
+    .sectionCard p, .sectionCard li{
       margin: 0;
-      padding-right: 18px;
-      line-height: 2;
-      color: rgba(15,23,42,.88);
-      font-weight: 700;
-    }
-
-    .kpiGrid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-    }
-    .kpiCard{
-      border:1px solid rgba(15,23,42,.08);
-      border-radius: 18px;
-      padding: 12px;
-      background: rgba(248,250,252,.9);
-    }
-    .kpiCard .k{ font-weight: 900; margin-bottom: 6px; }
-    .kpiCard .v{ color: rgba(15,23,42,.80); font-weight: 700; line-height:1.8; }
-
-    /* editor */
-    .editor{
-      border:1px solid rgba(15,23,42,.10);
-      border-radius: 18px;
-      padding: 12px;
-      background: rgba(248,250,252,.85);
-      display:none;
-      gap: 10px;
-    }
-    .editor.open{ display:grid; }
-    .field{ display:flex; flex-direction:column; gap: 6px; }
-    .field label{
-      font-weight: 900;
-      font-size: 12px;
-      color: rgba(15,23,42,.72);
-    }
-    .field textarea, .field input{
-      width:100%;
-      border-radius: 14px;
-      border:1px solid rgba(15,23,42,.12);
-      padding: 10px 10px;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 13px;
-      line-height: 1.8;
-      outline:none;
-      background:#fff;
-    }
-    .field textarea{ min-height: 92px; resize: vertical; }
-    .editorActions{
-      display:flex;
-      gap: 10px;
-      justify-content:flex-end;
-      flex-wrap:wrap;
-      margin-top: 6px;
-    }
-
-    /* drawer */
-    .drawerBack{
-      position:fixed; inset:0;
-      background: rgba(2,6,23,.45);
-      display:none;
-      z-index:9998;
-    }
-    .drawerBack.open{ display:block; }
-    .drawer{
-      position:fixed;
-      top: 14px; left: 14px; bottom: 14px;
-      width: min(780px, calc(100% - 28px));
-      background:#fff;
-      border-radius: 22px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.35);
-      border:1px solid rgba(15,23,42,.12);
-      padding: 14px;
-      display:none;
-      z-index:9999;
-      overflow:auto;
-    }
-    .drawer.open{ display:block; }
-    .drawerHead{
-      display:flex; gap: 10px;
-      align-items:center; justify-content:space-between;
-      margin-bottom: 10px;
-    }
-    .drawerHead .h{ font-weight: 900; font-size: 14px; color:#0f172a; }
-    .drawer textarea{
-      width:100%;
-      min-height: 300px;
-      border-radius: 18px;
-      border:1px solid rgba(15,23,42,.12);
-      padding: 12px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 12px;
-      line-height: 1.7;
-      outline:none;
-    }
-    .drawer .mini{
-      width:100%;
-      border-radius: 14px;
-      border:1px solid rgba(15,23,42,.12);
-      padding: 10px 10px;
-      font-family: inherit;
+      color: rgba(15,23,42,.82);
       font-weight: 800;
-      font-size: 12.5px;
-      outline:none;
-      background:#fff;
+      line-height: 2;
+      font-size: 13px;
     }
-    .hr{ height:1px; background: rgba(15,23,42,.10); margin: 10px 0; }
+    .sectionGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .box{
+      background: rgba(248,250,252,.9);
+      border: 1px solid rgba(15,23,42,.08);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .box h3{margin:0 0 8px;font-size:13px;font-weight:950}
+    .box ul{margin:0;padding-right:18px}
 
-    /* Lightbox (zoom image) */
-    .lightboxBack{
-      position:fixed; inset:0;
-      background: rgba(2,6,23,.82);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index: 10000;
-      padding: 18px;
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      padding: 22px 16px;
+      background: rgba(15,23,42,.96);
+      color: rgba(255,255,255,.88);
     }
-    .lightboxBack.open{ display:flex; }
-    .lightbox{
-      width: min(980px, 100%);
-      height: min(760px, 100%);
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 22px;
-      overflow:hidden;
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .lightbox img{
-      max-width: 100%;
-      max-height: 100%;
-      transform-origin: center center;
-      cursor: zoom-in;
-      user-select:none;
-      -webkit-user-drag: none;
-    }
-    .lbTop{
-      position:absolute;
-      top: 10px; left: 10px; right: 10px;
+    .footerInner{
+      max-width: 1600px;
+      margin:0 auto;
       display:flex;
       justify-content:space-between;
-      align-items:center;
-      gap: 10px;
-      pointer-events:none;
+      align-items:flex-start;
+      gap: 16px;
+      flex-wrap:wrap;
     }
-    .lbBadge{
-      pointer-events:none;
-      background: rgba(0,0,0,.45);
-      color:#fff;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 999px;
-      padding: 8px 10px;
-      font-weight: 900;
-      font-size: 12px;
-      white-space:nowrap;
+    .footerCol{min-width:220px}
+    .footerCol .ft{font-weight:950;margin-bottom:8px}
+    .footerCol .fs{font-weight:800;font-size:12px;line-height:2;color:rgba(255,255,255,.78)}
+    .footerLinks{
+      display:flex;flex-wrap:wrap;gap:10px;margin-top:10px
     }
-    .lbBtns{
-      display:flex; gap:10px;
-      pointer-events:auto;
-    }
-    .lbBtn{
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.45);
-      color:#fff;
-      border-radius: 14px;
-      padding: 10px 12px;
-      font-weight: 900;
-      font-size: 12px;
-      cursor:pointer;
+    .footerLinks a{
+      color:#fff;text-decoration:none;font-weight:900;font-size:12px;
+      padding:8px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
     }
 
     @media (max-width: 1200px){
-      .grid{ grid-template-columns: repeat(2, minmax(300px, 1fr)); }
+      .grid{grid-template-columns: repeat(2, minmax(300px, 1fr));}
+      .sectionGrid{grid-template-columns: 1fr;}
     }
     @media (max-width: 720px){
-      .grid{ grid-template-columns: 1fr; }
-      #lines{ display:none; }
-      .brandText .t2{display:none;}
+      .grid{grid-template-columns: 1fr;}
+      #lines{display:none;}
+      .nav{display:none;}
+      .searchWrap.open .searchInput{width: min(420px, 76vw);}
     }
   </style>
 </head>
 
 <body>
-<div class="wrap">
+
+<header class="siteHeader">
+  <div class="headerInner">
+    <div class="brandMini">
+      <div class="logo" title="images/logo.png">
+        <img src="./images/logo.png" alt="logo" crossorigin="anonymous"
+             onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=&quot;color:#0f172a;font-weight:950&quot;>IH</span>';">
+      </div>
+      <div class="txt">
+        <div class="t1">IranHotel • Supply Chain</div>
+        <div class="t2">Org Chart • Search • Export</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="#chart">چارت</a>
+      <a href="#about">درباره ما</a>
+      <a href="#contact">ارتباط با ما</a>
+    </nav>
+
+    <div class="headerActions">
+      <div class="searchWrap" id="searchWrap">
+        <button class="searchBtn" id="searchBtn" title="جستجو">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <input class="searchInput" id="searchInput" placeholder="جستجو: نام، نقش، تیم… (مثال: شجاع | ظرفیت | پنل)">
+      </div>
+
+      <button class="btn" id="btnScores">به‌روزرسانی امتیازها</button>
+      <button class="btn primary" id="btnExportPng">خروجی PNG</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap" id="chart">
+  <div class="hero">
+    <div class="heroInner">
+      <div class="heroLogo">
+        <img src="./images/logo.png" alt="logo" crossorigin="anonymous"
+             onerror="this.style.display='none'; this.parentNode.style.display='grid'; this.parentNode.style.placeItems='center'; this.parentNode.innerHTML='<span style=&quot;color:#fff;font-weight:950&quot;>IH</span>';">
+      </div>
+      <div class="heroTitle">
+        <h1>چارت سازمانی تیم زنجیره تأمین</h1>
+        <p>IranHotel Online • Supply Chain Organization • کلیک روی هر کارت برای مشاهده شرح وظایف</p>
+      </div>
+    </div>
+  </div>
+
   <div class="paper" id="stage">
-    <svg id="lines"></svg>
+    <svg id="lines" aria-hidden="true"></svg>
 
-    <!-- Header -->
-    <div class="topHeader">
-      <div class="brandLeft">
-        <div class="logoBox" title="Logo: images/logo.png">
-          <img src="images/logo.jpg" alt="logo"
-               onerror="this.style.display='none'; this.parentNode.style.background='#0f172a'; this.parentNode.innerHTML='<span style=&quot;color:#fff;font-weight:900&quot;>LOGO</span>';">
-        </div>
-        <div class="brandText">
-          <div class="t1">IranHotel — Supply Chain Org Chart</div>
-          <div class="t2">جستجو، شرح شغل، KPI، امتیاز، و خروجی تصویر</div>
-        </div>
-      </div>
-
-      <div class="searchBox">
-        <span class="hint" id="searchHint">0 نتیجه</span>
-        <input id="searchInput" placeholder="جستجو: نام، نقش، تیم (مثال: نرگس | ظرفیت | R&I | Panel)"/>
-      </div>
-
-      <div class="headerRight">
-        <button class="btn" id="btnExportPng">خروجی تصویر PNG</button>
-        <button class="btn" id="btnAdmin">ویرایشگر کلی (JSON + Scores)</button>
-        <button class="btn primary" id="btnReset">ریست تغییرات</button>
-      </div>
+    <div class="topRow">
+      <div id="node-top"></div>
     </div>
 
-    <!-- Top person -->
-    <div class="stack center" style="position:relative;z-index:2;margin: 6px 0 16px;">
-      <div class="node" id="node-top"></div>
-    </div>
-
-    <!-- Departments -->
     <div class="grid" id="grid"></div>
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modalBack" id="modalBack" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true">
-    <div class="modalHead">
-      <div class="avatar" id="mAvatar" title="برای بزرگ‌نمایی کلیک کنید">
-        <div class="initials" id="mInitials">--</div>
+<section id="about">
+  <div class="sectionCard">
+    <h2>درباره ما</h2>
+    <p>
+      این صفحه برای نمایش ساختار تیم زنجیره‌تأمین (Supply Chain) در IranHotel طراحی شده تا مدیریت،
+      هماهنگی بین تیم‌ها، و شفافیت نقش‌ها و وظایف به شکل یکپارچه و قابل ارائه فراهم شود.
+    </p>
+
+    <div class="sectionGrid">
+      <div class="box">
+        <h3>هدف</h3>
+        <ul>
+          <li>شفاف‌سازی ساختار تیم‌ها و زیرمجموعه‌ها</li>
+          <li>دسترسی سریع به شرح وظایف هر نقش</li>
+          <li>امکان جستجوی نام/نقش و خروجی تصویر برای ارائه مدیریتی</li>
+        </ul>
       </div>
-      <div class="meta">
-        <div class="name" id="mName">—</div>
-        <div class="role" id="mRole">—</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
-          <span class="pill" id="mTeamPill">—</span>
-          <span class="pill" id="mTypePill">—</span>
+      <div class="box">
+        <h3>راهنما</h3>
+        <ul>
+          <li>روی هر کارت کلیک کن تا جزئیات باز شود</li>
+          <li>از آیکن سرچ برای فیلتر سریع استفاده کن</li>
+          <li>برای ارائه، خروجی PNG بگیر</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sectionCard">
+    <h2>ارتباط با ما</h2>
+    <p>برای پیشنهاد بهبود، اصلاح ساختار، یا درخواست فیچرهای جدید (مثلاً KPI Dashboard) می‌تونی از این بخش استفاده کنی.</p>
+
+    <div class="sectionGrid">
+      <div class="box">
+        <h3>اطلاعات تماس</h3>
+        <ul>
+          <li>شرکت: IranHotelOnline</li>
+          <li>واحد: Supply Chain</li>
+          <li>ایمیل/تلفن: (اینجا بعداً وارد کن)</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>درخواست‌های رایج</h3>
+        <ul>
+          <li>اضافه/حذف نفرات و اصلاح زیرمجموعه‌ها</li>
+          <li>اتصال امتیازها به Google Sheet</li>
+          <li>نسخه پرینتی A4 یا نسخه ارائه مدیریتی</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footerInner">
+    <div class="footerCol">
+      <div class="ft">IranHotel • Supply Chain</div>
+      <div class="fs">نسخه تعاملی چارت سازمانی — مناسب Jira / Confluence / Management Review</div>
+      <div class="footerLinks">
+        <a href="#chart">چارت</a>
+        <a href="#about">درباره ما</a>
+        <a href="#contact">ارتباط با ما</a>
+      </div>
+    </div>
+    <div class="footerCol">
+      <div class="ft">نکته</div>
+      <div class="fs">عکس‌ها باید داخل فولدر <b>images</b> و با نام دقیق فایل‌ها روی Vercel قرار بگیرند.</div>
+    </div>
+    <div class="footerCol">
+      <div class="ft">©</div>
+      <div class="fs">All rights reserved — IranHotelOnline</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div class="modalBack" id="modalBack" style="display:none;position:fixed;inset:0;background:rgba(2,6,23,.62);z-index:9999;align-items:center;justify-content:center;padding:18px;">
+  <div class="modal" style="width:min(980px,100%);background:#fff;border-radius:24px;border:1px solid rgba(15,23,42,.12);box-shadow:0 34px 90px rgba(0,0,0,.35);overflow:hidden;">
+    <div class="modalHead" style="padding:16px;display:flex;gap:14px;align-items:center;background:linear-gradient(180deg, rgba(248,250,252,.92), #fff);border-bottom:1px solid rgba(15,23,42,.08);">
+      <div class="avatar" id="mAvatar" title="برای بزرگ‌نمایی کلیک کنید" style="width:64px;height:64px;border-radius:18px;cursor:zoom-in;"></div>
+      <div class="meta" style="min-width:0">
+        <div class="name" id="mName" style="font-size:18px;font-weight:950"></div>
+        <div class="role" id="mRole" style="font-size:13px;font-weight:850;color:var(--muted)"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <span class="pill" id="mTeamPill"></span>
+          <span class="pill" id="mTypePill"></span>
           <span class="scorePill" id="mScorePill"><span class="dot" id="mScoreDot"></span><span id="mScoreText">Score</span></span>
         </div>
       </div>
-      <div class="modalHeadRight">
-        <button class="iconBtn" id="btnEdit">ویرایش</button>
-        <button class="iconBtn" id="btnRefreshScores">به‌روزرسانی امتیاز</button>
-        <button class="iconBtn primary" id="btnClose">بستن ✕</button>
+      <div style="margin-inline-start:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <button class="btn" id="btnRefreshScores">به‌روزرسانی امتیاز</button>
+        <button class="btn primary" id="btnClose">بستن ✕</button>
       </div>
     </div>
 
-    <div class="tabs">
-      <button class="tab active" data-tab="tab-overview">Overview</button>
-      <button class="tab" data-tab="tab-resp">Responsibilities</button>
-      <button class="tab" data-tab="tab-kpi">KPIs</button>
-      <button class="tab" data-tab="tab-tools">Tools</button>
-      <button class="tab" data-tab="tab-team">Team Duties</button>
-      <button class="tab" data-tab="tab-editor">Editor</button>
+    <div class="tabs" style="display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;border-bottom:1px solid rgba(15,23,42,.08);background:rgba(248,250,252,.70);">
+      <button class="tab active" data-tab="tab-overview" style="padding:8px 12px;border-radius:999px;font-weight:950;font-size:12px;border:1px solid rgba(15,23,42,.10);background:#0f172a;color:#fff;cursor:pointer;">Overview</button>
+      <button class="tab" data-tab="tab-resp" style="padding:8px 12px;border-radius:999px;font-weight:950;font-size:12px;border:1px solid rgba(15,23,42,.10);background:#fff;cursor:pointer;">Responsibilities</button>
+      <button class="tab" data-tab="tab-kpi" style="padding:8px 12px;border-radius:999px;font-weight:950;font-size:12px;border:1px solid rgba(15,23,42,.10);background:#fff;cursor:pointer;">KPIs</button>
+      <button class="tab" data-tab="tab-tools" style="padding:8px 12px;border-radius:999px;font-weight:950;font-size:12px;border:1px solid rgba(15,23,42,.10);background:#fff;cursor:pointer;">Tools</button>
+      <button class="tab" data-tab="tab-team" style="padding:8px 12px;border-radius:999px;font-weight:950;font-size:12px;border:1px solid rgba(15,23,42,.10);background:#fff;cursor:pointer;">Team Duties</button>
     </div>
 
-    <div class="tabContent active" id="tab-overview"></div>
-    <div class="tabContent" id="tab-resp"></div>
-    <div class="tabContent" id="tab-kpi"></div>
-    <div class="tabContent" id="tab-tools"></div>
-    <div class="tabContent" id="tab-team"></div>
-
-    <div class="tabContent" id="tab-editor">
-      <div class="sectionTitle">ویرایشگر شرح شغل همین فرد (ذخیره داخل مرورگر)</div>
-      <div class="editor" id="editorBox">
-        <div class="field">
-          <label>Mission / Overview</label>
-          <textarea id="edOverview" placeholder="ماموریت نقش..."></textarea>
-        </div>
-        <div class="field">
-          <label>Responsibilities (هر خط یک مورد)</label>
-          <textarea id="edResp" placeholder="مثال: بروزرسانی نرخ&#10;مثال: پیگیری مغایرت"></textarea>
-        </div>
-        <div class="field">
-          <label>KPIs (هر خط یک KPI)</label>
-          <textarea id="edKpis" placeholder="Freshness نرخ/ظرفیت&#10;کاهش خطا"></textarea>
-        </div>
-        <div class="field">
-          <label>Tools / Interactions (هر خط)</label>
-          <textarea id="edTools" placeholder="Hotel Panel&#10;CRM&#10;Dashboards"></textarea>
-        </div>
-
-        <div class="editorActions">
-          <button class="btn" id="btnSavePerson">ذخیره</button>
-          <button class="btn" id="btnExportPerson">خروجی JSON همین نفر</button>
-          <button class="btn primary" id="btnCancelEdit">بستن ویرایش</button>
-        </div>
-      </div>
-
-      <div style="margin-top:12px;color:var(--muted);font-weight:700;line-height:2">
-        نکته: اطلاعات ذخیره‌شده داخل مرورگر (localStorage) می‌ماند. با دکمه «ریست تغییرات» پاک می‌شود.
-      </div>
-    </div>
+    <div class="tabContent active" id="tab-overview" style="padding:14px 16px 18px"></div>
+    <div class="tabContent" id="tab-resp" style="display:none;padding:14px 16px 18px"></div>
+    <div class="tabContent" id="tab-kpi" style="display:none;padding:14px 16px 18px"></div>
+    <div class="tabContent" id="tab-tools" style="display:none;padding:14px 16px 18px"></div>
+    <div class="tabContent" id="tab-team" style="display:none;padding:14px 16px 18px"></div>
   </div>
 </div>
 
-<!-- Admin Drawer -->
-<div class="drawerBack" id="drawerBack"></div>
-<div class="drawer" id="drawer">
-  <div class="drawerHead">
-    <div class="h">ویرایشگر کلی دیتای شرح شغل + تنظیم امتیاز (Google Sheet)</div>
-    <button class="btn primary" id="drawerClose">بستن ✕</button>
-  </div>
-
-  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
-    <button class="btn" id="drawerLoad">بارگذاری از سیستم (JOBS فعلی)</button>
-    <button class="btn" id="drawerApply">اعمال JSON روی سیستم</button>
-    <button class="btn" id="drawerExport">دانلود JOBS کامل</button>
-    <label class="btn" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer">
-      Import JOBS JSON
-      <input type="file" id="drawerImport" accept="application/json" style="display:none">
-    </label>
-  </div>
-
-  <textarea id="drawerText" spellcheck="false"></textarea>
-
-  <div class="hr"></div>
-
-  <div class="sectionTitle">اتصال امتیاز از Google Sheets (CSV)</div>
-  <div style="display:grid;gap:10px">
-    <input class="mini" id="scoreCsvUrl" placeholder="CSV URL (Publish link) — مثال: https://docs.google.com/spreadsheets/d/e/.../pub?output=csv">
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn" id="btnSaveScoreConfig">ذخیره تنظیمات امتیاز</button>
-      <button class="btn primary" id="btnFetchScores">دریافت امتیازها</button>
-    </div>
-    <div style="color:var(--muted);font-weight:700;line-height:2">
-      ساختار شیت باید حداقل این ستون‌ها را داشته باشد:<br>
-      <b>id</b> (مثل: cm1, sp1, cap1, pan2 ...) و <b>score</b> (مثلاً 78) و اختیاری: <b>updated_at</b>.<br>
-      برای دسترسی: Google Sheet → File → Share → Publish to web → CSV
-    </div>
-  </div>
-
-  <div style="margin-top:12px;color:var(--muted);font-weight:700;line-height:2">
-    نکته: JOBS و تنظیمات امتیاز داخل مرورگر ذخیره می‌شود.
-  </div>
-</div>
-
-<!-- Lightbox (Zoom Image) -->
-<div class="lightboxBack" id="lbBack" aria-hidden="true">
-  <div class="lightbox">
-    <div class="lbTop">
-      <div class="lbBadge" id="lbTitle">Photo</div>
-      <div class="lbBtns">
-        <button class="lbBtn" id="lbZoomIn">Zoom +</button>
-        <button class="lbBtn" id="lbZoomOut">Zoom −</button>
-        <button class="lbBtn" id="lbReset">Reset</button>
-        <button class="lbBtn" id="lbClose">Close ✕</button>
+<!-- Lightbox -->
+<div id="lbBack" style="display:none;position:fixed;inset:0;background:rgba(2,6,23,.82);z-index:10000;padding:18px;align-items:center;justify-content:center;">
+  <div style="width:min(980px,100%);height:min(760px,100%);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:22px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;">
+    <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;">
+      <div id="lbTitle" style="background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 10px;font-weight:950;font-size:12px;">Photo</div>
+      <div style="display:flex;gap:10px;">
+        <button class="btn" id="lbZoomIn">Zoom +</button>
+        <button class="btn" id="lbZoomOut">Zoom −</button>
+        <button class="btn" id="lbReset">Reset</button>
+        <button class="btn primary" id="lbClose">Close ✕</button>
       </div>
     </div>
-    <img id="lbImg" alt="photo">
+    <img id="lbImg" alt="photo" crossorigin="anonymous" style="max-width:100%;max-height:100%;transform-origin:center;user-select:none;-webkit-user-drag:none;cursor:zoom-in">
   </div>
 </div>
 
 <script>
-/* =========================
-   0) Helpers + Storage Keys
-========================= */
-const LS_KEY = "IHO_SUPPLY_ORG_JOBS_V2";
-const LS_SCORE_CFG = "IHO_SUPPLY_ORG_SCORE_CFG_V1";
-const LS_SCORES = "IHO_SUPPLY_ORG_SCORES_V1";
-
+/* ========= Helpers ========= */
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, m => ({
   "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
 }[m]));
-
 const initials = (name) => {
   const parts = String(name||"").trim().split(/\s+/).filter(Boolean);
-  const a = parts[0]?.[0] || "?";
+  const a = parts[0]?.[0] || "؟";
   const b = parts[1]?.[0] || (parts[0]?.[1] || "");
   return (a+b);
 };
+function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
+function norm(s){ return String(s||"").toLowerCase().replace(/\s+/g," ").trim(); }
 
-function downloadText(filename, text){
-  const blob = new Blob([text], {type:"application/json;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
+/* ========= Scores ========= */
+const SCORE_SHEET_URL = ""; // اگر خواستی، اینجا gviz/csv را بذار
+let SCORES = {}; // {id:{score:number, updated_at:string}}
+
+function scoreDotClass(score){
+  if(score >= 80) return "good";
+  if(score >= 60) return "mid";
+  return "low";
 }
-function tryParseJSON(str){
-  try { return {ok:true, data: JSON.parse(str)}; }
-  catch(e){ return {ok:false, error: e?.message || "Invalid JSON"}; }
-}
-function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
-
-/* =========================
-   1) Team Duties
-========================= */
-const TEAM = {
-  top: {
-    key:"top", label:"Management", pillClass:"",
-    duties:[
-      "طراحی و کنترل فرآیندهای Rate & Inventory / Capacity در کل شبکه",
-      "تعیین SLA اقدام، استاندارد کیفیت دیتا و کنترل ریسک عملیاتی",
-      "هدایت City Managers، تیم ظرفیت و تیم پنل/محتوا",
-      "اولویت‌بندی هتل‌های High-impact و مدیریت بحران‌ها",
-      "مدیریت backlog توسعه پنل و اتوماسیون‌های تیم",
-      "گزارش‌دهی هفتگی/ماهانه و توسعه برنامه بهبود عملکرد"
-    ]
-  },
-  dom: {
-    key:"dom", label:"هتل‌های داخلی", pillClass:"dom",
-    duties:[
-      "مدیریت ارتباط روزانه با هتل‌های داخلی برای نرخ/ظرفیت/پروموشن",
-      "بروزرسانی دقیق نرخ‌ها و قوانین فروش + کنترل کیفیت قبل از انتشار",
-      "کنترل Capacity و جلوگیری از Over/Under و Missed Sales",
-      "رفع مغایرت‌های نرخ/اطلاعات/اتاق‌ها با مستندات هتل",
-      "نگهداری لاگ اقدامات و رعایت SLA در تسک‌های حساس",
-      "پایش KPIهای منطقه‌ای و Escalation به موقع"
-    ]
-  },
-  for: {
-    key:"for", label:"هتل‌های خارجی", pillClass:"for",
-    duties:[
-      "راه‌اندازی و توسعه تامین هتل‌های خارجی (فرایند، استانداردها، SLA)",
-      "مدیریت نرخ/ظرفیت با حساسیت روی Currency، Tax/Fee و Policy",
-      "کنترل مپینگ اتاق‌ها و قوانین Cancellation/No-show/Meal plan",
-      "هماهنگی بین Account Manager و R&I خارجی برای انتشار دقیق",
-      "گزارش و پیگیری نیازهای سیستمی خارجی‌ها با تیم پنل"
-    ]
-  },
-  pan: {
-    key:"pan", label:"توسعه پنل و محتوا", pillClass:"pan",
-    duties:[
-      "تحلیل نیازهای عملیاتی و تبدیل آن‌ها به فیچر/باگ قابل توسعه",
-      "افزایش اتوماسیون و کاهش خطای انسانی (Validation / Bulk Update / Logs)",
-      "تعریف استاندارد QA و مدیریت Release برای جلوگیری از Regression",
-      "بهبود UX پنل برای سرعت اقدام و کاهش اشتباه",
-      "مدیریت محتوا: تکمیل داده‌ها، تصاویر، قوانین و استانداردسازی"
-    ]
-  },
-  cap: {
-    key:"cap", label:"تیم ظرفیت", pillClass:"cap",
-    duties:[
-      "پایش روزانه Availability هتل‌های حساس و پرفروش",
-      "کنترل Over/Under و هماهنگی سریع برای اصلاح ظرفیت‌ها",
-      "ساخت Watchlist ظرفیت و تعریف هشدارهای عملیاتی",
-      "گزارش روزانه/هفتگی ظرفیت و موارد بحرانی",
-      "کاهش Missed Sales از طریق بهبود Coverage"
-    ]
-  }
-};
-
-/* =========================
-   2) Chart Structure
-========================= */
-const CHART = {
-  top: { id:"top", team:"top", type:"Head", name:"محمد باقر ذوالفقاری", role:"Head of Supply Chain", chip:"Management", image:"images/mbz.png" },
-  departments: [
-    { key:"dom", titleFA:"هتل‌های داخلی", titleEN:"Domestic Hotels", chip:"Domestic", team:"dom",
-      blocks:[ {managerId:"cm1", specs:["sp1","sp2"]}, {managerId:"cm2", specs:["sp3","sp4"]}, {managerId:"cm3", specs:["sp5","sp6"]} ]
-    },
-    { key:"for", titleFA:"هتل‌های خارجی", titleEN:"Foreign Hotels (NEW)", chip:"Foreign", team:"for", stack:["for1","for2","for3"] },
-    { key:"pan", titleFA:"توسعه پنل و محتوا", titleEN:"Content & Panel Ops", chip:"Panel", team:"pan", stack:["pan1","pan2","pan3","pan4"] },
-    { key:"cap", titleFA:"تیم ظرفیت", titleEN:"Capacity Team", chip:"Capacity", team:"cap", stack:["cap1","cap2"] }
-  ],
-  people: {
-    cm1:{id:"cm1",team:"dom",type:"City Manager",name:"محدثه باقری",role:"City Manager — Center",chip:"Manager",image:"images/m_bagheri.jpg"},
-    cm2:{id:"cm2",team:"dom",type:"City Manager",name:"نرگس قدرتی",role:"City Manager — East & South",chip:"Manager",image:"images/n_ghodrati.jpg"},
-    cm3:{id:"cm3",team:"dom",type:"City Manager",name:"سپیده داوطلب",role:"City Manager — North & West",chip:"Manager",image:"images/s_davtalab.jpg"},
-
-    sp1:{id:"sp1",team:"dom",type:"R&I Specialist",name:"فاطمه خسروی",role:"Rate & Inventory — Domestic",chip:"R&I",image:"images/f_khosravi.jpg"},
-    sp2:{id:"sp2",team:"dom",type:"R&I Specialist",name:"فائزه سالاری",role:"Rate & Inventory — Domestic",chip:"R&I",image:"images/f_salari.jpg"},
-    sp3:{id:"sp3",team:"dom",type:"R&I Specialist",name:"فاطمه رنجبر",role:"Rate & Inventory — Domestic",chip:"R&I",image:"images/f_ranjbar.jpg"},
-    sp4:{id:"sp4",team:"dom",type:"R&I Specialist",name:"افسانه مرادی",role:"Rate & Inventory — Domestic",chip:"R&I",image:"images/a_moradi.jpg"},
-    sp5:{id:"sp5",team:"dom",type:"R&I Specialist",name:"پگاه واعظین",role:"Rate & Inventory — Domestic",chip:"R&I",image:"images/p_vaezin.jpg"},
-    sp6:{id:"sp6",team:"dom",type:"R&I Specialist",name:"فاطمه رحیمی",role:"Rate & Inventory — Domestic",chip:"R&I",image:"images/f_rahimi.jpg"},
-
-    for1:{id:"for1",team:"for",type:"Account Manager",name:"Account Manager",role:"Foreign Hotels",chip:"Vacant",vacant:true,image:""},
-    for2:{id:"for2",team:"for",type:"R&I Specialist",name:"Rate & Inventory",role:"Foreign Hotels",chip:"Vacant",vacant:true,image:""},
-    for3:{id:"for3",team:"for",type:"R&I Specialist",name:"Rate & Inventory",role:"Foreign Hotels",chip:"Vacant",vacant:true,image:""},
-
-    pan1:{id:"pan1",team:"pan",type:"Lead",name:"منصوره یکتایی",role:"Lead — Panel Development",chip:"Lead",image:"images/m_yektaei.jpg"},
-    pan2:{id:"pan2",team:"pan",type:"Developer",name:"پریا گلی",role:"Panel Developer",chip:"Team",image:"images/p_goli.jpg"},
-    pan3:{id:"pan3",team:"pan",type:"Developer",name:"مهسا ناصری",role:"Panel Developer",chip:"Team",image:"images/m_naseri.jpg"},
-    pan4:{id:"pan4",team:"pan",type:"Content Admin",name:"Content Admin",role:"City Project",chip:"Vacant",vacant:true,image:""},
-
-    cap1:{id:"cap1",team:"cap",type:"Capacity Specialist",name:"مهلا بهرامی‌زاده",role:"Capacity Specialist",chip:"Capacity",image:"images/m_bahramizade.jpg"},
-    cap2:{id:"cap2",team:"cap",type:"Capacity Specialist",name:"علیرضا بیابانگرد",role:"Capacity Specialist",chip:"Capacity",image:"images/a_biabangard.jpg"},
-  }
-};
-
-/* =========================
-   3) JOBS_DEFAULT (full)
-========================= */
-const JOBS_DEFAULT = {
-  top: {
-    overview:"رهبری زنجیره تأمین هتل‌ها برای تضمین درستی و به‌روز بودن نرخ/ظرفیت/محتوا، افزایش فروش و کاهش خطا و ریسک عملیاتی در کانال‌های فروش.",
-    responsibilities:[
-      "طراحی و کنترل فرآیندهای Rate & Inventory و Capacity در کل شبکه",
-      "هدایت City Managers، تیم ظرفیت و تیم پنل/محتوا و تعیین چارچوب‌های همکاری",
-      "سیاست‌گذاری SLA اقدام، استانداردهای کیفیت دیتا و کنترل ریسک (Over/Under/Policy)",
-      "مدیریت backlog توسعه پنل و اولویت‌بندی اتوماسیون‌ها و حذف کارهای دستی پرتکرار",
-      "مدیریت بحران‌ها: مغایرت‌های گسترده، افت فروش، قطع اتصال، شکایات پرتکرار",
-      "گزارش‌دهی هفتگی/ماهانه و تعریف برنامه بهبود"
-    ],
-    kpis:[
-      "Freshness نرخ/ظرفیت",
-      "نرخ خطا/مغایرت و زمان رفع (TTR)",
-      "Availability Coverage و کاهش Missed Sales",
-      "تاثیر بر فروش/کانورژن در هتل‌های اولویت‌دار",
-      "SLA پاسخ و اقدام تیم"
-    ],
-    tools:["Hotel Panel / Provider Panels","CRM / Ticketing","Dashboards & Reports","Telegram Ops Channel"]
-  },
-
-  cm1:{
-    overview:"مالک عملکرد تامین هتل‌های منطقه Center؛ تضمین کیفیت نرخ/ظرفیت، کاهش خطا و پیشبرد فروش منطقه.",
-    responsibilities:[
-      "تقسیم کار روزانه بین کارشناسان R&I و پیگیری تا بسته شدن تسک‌ها",
-      "کنترل کیفیت تغییرات حساس (نرخ‌های کلیدی، محدودیت‌ها، ظرفیت‌های بحرانی)",
-      "ارتباط با هتل‌ها برای دریافت نرخ/پروموشن/رفع اختلاف و تثبیت SLA پاسخ",
-      "مدیریت مغایرت‌ها و Escalation موارد بحرانی به Head",
-      "پایش KPIهای منطقه و ساخت Watchlist هتل‌های high-impact",
-      "ثبت گزارش هفتگی: ریسک‌ها، اقدامات و برنامه هفته بعد"
-    ],
-    kpis:["Freshness منطقه","درصد تسک‌های بسته‌شده در SLA","کاهش مغایرت و خطای تکراری","کاهش missed sales","رشد فروش منطقه"],
-    tools:["Hotel Panel","CRM/Tickets","Dashboards","Sheets","Telegram Ops"]
-  },
-  cm2:{
-    overview:"مالک عملکرد تامین هتل‌های East & South؛ کنترل ریسک پیک‌ها، بهبود سرعت اقدام و حفظ کیفیت داده.",
-    responsibilities:[
-      "مدیریت تیم R&I منطقه و استانداردسازی روال اقدام",
-      "پیگیری هتل‌های کم‌پاسخ یا پرخطا و اجرای برنامه اصلاح همکاری",
-      "کنترل ظرفیت در پیک‌ها و رویدادها و جلوگیری از under/over",
-      "تایید نهایی تغییرات حساس و QA خروجی",
-      "تعریف اولویت هتل‌ها و تصمیم‌گیری در بحران‌های روزانه",
-      "گزارش‌دهی عملکرد و نیازهای سیستمی به تیم پنل"
-    ],
-    kpis:["Freshness","کاهش خطا/برگشت کار","Lead time اقدام","Coverage ظرفیت","پایداری فروش در پیک‌ها"],
-    tools:["Hotel Panel","CRM/Tickets","Dashboards","Telegram Ops"]
-  },
-  cm3:{
-    overview:"مالک عملکرد تامین هتل‌های North & West؛ پایش نرخ رقابتی، جلوگیری از خطاهای فروش و بهبود conversion منطقه.",
-    responsibilities:[
-      "هدایت کارشناسان R&I و کنترل کیفی نرخ/قوانین/محدودیت‌ها",
-      "پایش نرخ رقابتی و هماهنگی با هتل برای اصلاحات ضروری",
-      "کنترل ظرفیت و Stop-sell در بازه‌های حساس",
-      "رفع مغایرت‌های پرتکرار و جلوگیری از تکرار خطا",
-      "ایجاد Playbook ارتباط با هتل‌ها و قالب‌های استاندارد پیگیری",
-      "گزارش‌دهی KPI و Backlog به Head"
-    ],
-    kpis:["Freshness","خطای تکراری","TTR مغایرت","Coverage ظرفیت","بهبود Conversion"],
-    tools:["Hotel Panel","CRM/Tickets","Dashboards","Telegram Ops"]
-  },
-
-  sp1:{
-    overview:"اجرای دقیق و سریع بروزرسانی نرخ/ظرفیت و نگهداری کیفیت داده برای جلوگیری از خطاهای فروش در هتل‌های داخلی.",
-    responsibilities:[
-      "ثبت و بروزرسانی نرخ‌ها (Weekday/Weekend/Seasonal/Package)",
-      "بروزرسانی ظرفیت/Availability/Stop-sell/Minimum stay طبق تایید CM",
-      "اعمال پروموشن‌ها و قوانین فروش با مستندات هتل",
-      "بررسی و رفع مغایرت نرخ/ظرفیت/اطلاعات اتاق‌ها",
-      "QA سریع: نمونه‌گیری نمایش/رزرو و کنترل قوانین/محدودیت‌ها",
-      "ثبت لاگ اقدامات: هتل، تغییر، زمان، نتیجه"
-    ],
-    kpis:["اقدام موفق بدون خطا","Lead time","نرخ خطا/برگشت کار","SLA","کاهش مغایرت تکراری"],
-    tools:["Hotel Panel","Checklists","CRM/Tickets","Telegram Ops","Dashboards"]
-  },
-  sp2:{
-    overview:"اجرای Rate & Inventory برای هتل‌های داخلی با تمرکز بر سرعت اقدام، دقت داده و کاهش خطا.",
-    responsibilities:[
-      "ثبت/آپدیت نرخ‌ها و محدودیت‌ها طبق سیاست فروش",
-      "آپدیت ظرفیت و مدیریت Stop-sell در بازه‌های حساس",
-      "پیگیری مغایرت‌ها و همسان‌سازی با مستندات هتل",
-      "اعمال پروموشن‌ها و کنترل اثر در نمایش/فروش",
-      "ثبت لاگ و گزارش موارد سیستمی به پنل",
-      "هماهنگی با City Manager برای اولویت‌بندی روزانه"
-    ],
-    kpis:["Freshness","SLA","کاهش خطا","کاهش backlog","کیفیت نمایش"],
-    tools:["Hotel Panel","CRM/Tickets","Checklists","Dashboards"]
-  },
-  sp3:{
-    overview:"اجرای دقیق تغییرات نرخ/ظرفیت در هتل‌های داخلی و کمک به تثبیت کیفیت داده و کاهش ریسک فروش.",
-    responsibilities:[
-      "بروزرسانی نرخ‌ها و کنترل صحیح قوانین/شرایط فروش",
-      "آپدیت Availability و مدیریت محدودیت‌ها",
-      "رفع مغایرت نرخ/ظرفیت/Policy با هماهنگی هتل",
-      "کنترل کیفیت اطلاعات اتاق/نام‌گذاری/مپینگ",
-      "ثبت دقیق لاگ و مستندسازی موارد حساس",
-      "Escalation موارد بحرانی به City Manager"
-    ],
-    kpis:["نرخ خطا","Freshness","TTR مغایرت","SLA","کیفیت دیتا"],
-    tools:["Hotel Panel","CRM/Tickets","Dashboards"]
-  },
-  sp4:{
-    overview:"پایش کیفیت اطلاعات و اجرای عملیات Rate & Inventory با تاکید بر استانداردسازی و کنترل مغایرت‌ها.",
-    responsibilities:[
-      "ثبت و بروزرسانی نرخ‌ها و ظرفیت‌ها",
-      "کنترل کیفیت قوانین (Cancellation/No-show) و محدودیت‌ها",
-      "رفع مغایرت‌های اطلاعاتی و جلوگیری از تکرار خطا",
-      "اعمال پروموشن‌ها و کنترل اثر آن در فروش/نمایش",
-      "ثبت مستندات و لاگ اقدامات",
-      "گزارش نیازهای پنل و ابزارها به تیم توسعه"
-    ],
-    kpis:["کیفیت Policy","کاهش خطای تکراری","Freshness","SLA","دقت داده"],
-    tools:["Hotel Panel","CRM/Tickets","Docs/Sheets","Dashboards"]
-  },
-  sp5:{
-    overview:"اجرای بروزرسانی‌های نرخ/ظرفیت و مدیریت استثناها برای حفظ Freshness و کاهش Missed Sales.",
-    responsibilities:[
-      "آپدیت نرخ و محدودیت‌ها طبق برنامه فروش",
-      "کنترل ظرفیت‌های بحرانی و هماهنگی Stop-sell",
-      "رفع مغایرت و پایش تکرار خطا",
-      "نمونه‌گیری QA برای اطمینان از صحت نمایش",
-      "ثبت لاگ و گزارش موارد مهم روزانه",
-      "همکاری نزدیک با City Manager برای اولویت‌بندی"
-    ],
-    kpis:["Freshness","Coverage","SLA","کاهش خطا","کاهش missed sales"],
-    tools:["Hotel Panel","Dashboards","Checklists","CRM/Tickets"]
-  },
-  sp6:{
-    overview:"پشتیبانی عملیاتی Rate & Inventory برای هتل‌های داخلی با تمرکز بر دقت، سرعت و کاهش ریسک فروش.",
-    responsibilities:[
-      "ثبت تغییرات نرخ/ظرفیت و پیگیری موارد معوق",
-      "رفع مغایرت‌های پرتکرار با مستندات هتل",
-      "کنترل اطلاعات اتاق و قوانین برای جلوگیری از شکایت",
-      "ثبت دقیق اقدامات و گزارش موارد بحرانی",
-      "هماهنگی با City Manager برای موارد حساس",
-      "پیشنهاد بهبود روال‌ها و چک‌لیست‌ها"
-    ],
-    kpis:["SLA","نرخ خطا","TTR","Freshness","کیفیت دیتا"],
-    tools:["Hotel Panel","CRM/Tickets","Checklists","Telegram Ops"]
-  },
-
-  for1:{
-    overview:"(Vacant) راه‌اندازی و مدیریت ارتباط تجاری/عملیاتی با هتل‌های خارجی؛ دریافت نرخ/قرارداد/قوانین و تضمین فروش‌پذیری.",
-    responsibilities:[
-      "ایجاد و مدیریت ارتباط با تامین‌کنندگان/هتل‌های خارجی و تثبیت SLA پاسخ",
-      "دریافت نرخ‌ها، قراردادها، قوانین و هماهنگی پروموشن‌ها",
-      "مدیریت چرخه تایید و انتشار نرخ/ظرفیت با تیم R&I خارجی",
-      "کنترل کیفیت داده و حل اختلافات (Price/Tax/Fee/Policy/Availability)",
-      "هماهنگی با تیم پنل برای نیازهای خارجی (Currency/Policy/Mapping)",
-      "ساخت Playbook خارجی‌ها (Templates, SLA, Standard Policies)"
-    ],
-    kpis:["تعداد هتل خارجی فعال","Freshness خارجی","TTR مغایرت","رشد فروش خارجی‌ها"],
-    tools:["Provider Panels","CRM/Tickets","Dashboards","Email/WhatsApp/Telegram"]
-  },
-  for2:{
-    overview:"(Vacant) اجرای Rate & Inventory برای هتل‌های خارجی با حساسیت بالا روی Policy، Currency و Mapping.",
-    responsibilities:[
-      "ورود نرخ‌ها با توجه به Currency و Tax/Fee طبق استاندارد",
-      "اعمال Availability/Stop-sell و کنترل مپینگ اتاق‌ها",
-      "کنترل Policyها (Cancellation/No-show/Meal plan)",
-      "هماهنگی با Account Manager برای تغییرات و مستندات",
-      "گزارش مشکلات پنل/محدودیت‌های سیستمی"
-    ],
-    kpis:["Freshness","کیفیت Policy","TTR","SLA","کیفیت Mapping"],
-    tools:["Provider Panels","CRM/Tickets","Dashboards"]
-  },
-  for3:{
-    overview:"(Vacant) اجرای Rate & Inventory برای هتل‌های خارجی (پوزیشن دوم) جهت افزایش ظرفیت اجرایی تیم خارجی‌ها.",
-    responsibilities:[
-      "آپدیت نرخ/ظرفیت و کنترل صحیح نمایش",
-      "کنترل قوانین و شرایط فروش برای کاهش اختلاف و شکایت",
-      "رفع مغایرت‌های پرتکرار و استانداردسازی داده",
-      "کمک در راه‌اندازی فرآیندهای اولیه خارجی‌ها",
-      "گزارش‌دهی منظم به Account Manager"
-    ],
-    kpis:["Freshness","نرخ خطا","SLA","TTR","کیفیت دیتا"],
-    tools:["Provider Panels","CRM/Tickets","Dashboards"]
-  },
-
-  pan1:{
-    overview:"رهبری توسعه پنل و اتوماسیون عملیات تامین برای افزایش سرعت، کاهش خطا و افزایش کنترل‌پذیری تیم Supply.",
-    responsibilities:[
-      "مدیریت backlog توسعه پنل و اولویت‌بندی بر اساس Impact",
-      "تحلیل نیازهای CM/R&I/Capacity و تبدیل به Requirement قابل توسعه",
-      "تعریف استاندارد QA و Release Discipline (کاهش Regression)",
-      "طراحی ابزارهای کنترل کیفیت (Validation، هشدار، لاگ استاندارد)",
-      "هماهنگی برای UAT و پذیرش فیچر",
-      "اندازه‌گیری اثر اتوماسیون‌ها و کاهش خطاهای پرتکرار"
-    ],
-    kpis:["زمان تحویل","Automation impact","کیفیت Release","رضایت عملیات"],
-    tools:["Issue Tracker","Repo/CI","Analytics","UAT Checklists","Panel Admin"]
-  },
-  pan2:{
-    overview:"توسعه و بهبود پنل تامین، رفع باگ‌ها و ساخت ابزارهای عملیاتی برای کاهش زمان اقدام تیم.",
-    responsibilities:[
-      "توسعه فیچرهای نرخ/ظرفیت/پروموشن/لاگ",
-      "رفع باگ‌های گزارش‌شده و افزایش پایداری",
-      "ساخت Bulk Update و Validation برای کاهش خطای انسانی",
-      "بهینه‌سازی UI/UX پنل برای سرعت اقدام",
-      "همکاری در تست و انتشار (QA/UAT)",
-      "مستندسازی فیچرها"
-    ],
-    kpis:["Velocity","Bug Return Rate","Stability","Time-to-fix"],
-    tools:["Git","Issue Tracker","Panel","Monitoring"]
-  },
-  pan3:{
-    overview:"پشتیبانی توسعه پنل و اجرای درخواست‌های تیم‌های عملیاتی، با تمرکز بر اتوماسیون و کاهش خطا.",
-    responsibilities:[
-      "رفع باگ‌ها و بهبودهای سریع‌اثر",
-      "ساخت ابزارهای کمک‌عملیاتی",
-      "بهبود لاگ‌برداری و قابلیت audit",
-      "پشتیبانی UAT و استقرار امن",
-      "همکاری با Lead برای اولویت‌بندی",
-      "مستندسازی تغییرات"
-    ],
-    kpis:["Time-to-fix","Regression","Impact","Stability"],
-    tools:["Git","Issue Tracker","Panel","Monitoring"]
-  },
-  pan4:{
-    overview:"(Vacant) مدیریت محتوا در پروژه‌های شهری: ورود/اصلاح دیتا، استانداردسازی و کنترل کیفیت برای افزایش کانورژن.",
-    responsibilities:[
-      "ورود/ویرایش مشخصات هتل، اتاق‌ها، امکانات، آدرس/لوکیشن و قوانین",
-      "کنترل کیفیت تصاویر و تکمیل گالری‌ها",
-      "هماهنگی برای دریافت اطلاعات ناقص",
-      "استانداردسازی naming و دسته‌بندی",
-      "گزارش کمبودها و اولویت‌بندی تکمیل بر اساس فروش",
-      "QA نهایی صفحات هتل‌های اولویت‌دار"
-    ],
-    kpis:["Content completeness","Conversion impact","SLA تکمیل","Quality errors"],
-    tools:["CMS/Panel","Image tools","Checklists","CRM/Tickets"]
-  },
-
-  cap1:{
-    overview:"کنترل و بهینه‌سازی ظرفیت/Availability برای کاهش missed sales و جلوگیری از overbooking.",
-    responsibilities:[
-      "پایش روزانه Availability هتل‌های حساس و پر فروش",
-      "کنترل Over/Under و اقدام اصلاحی سریع",
-      "هماهنگی با CMها و R&I برای اعمال تغییرات",
-      "تعریف Watchlist ظرفیت و استاندارد هشدارها",
-      "گزارش روزانه/هفتگی ظرفیت و موارد بحرانی"
-    ],
-    kpis:["Coverage","کاهش missed sales","کاهش over incidents","Speed of response"],
-    tools:["Dashboards","Hotel Panel","CRM/Tickets","Alerts/Watchlists"]
-  },
-  cap2:{
-    overview:"پشتیبانی تیم ظرفیت و پیگیری موارد بحرانی و پرتکرار برای بهبود Coverage و Freshness.",
-    responsibilities:[
-      "کنترل ظرفیت‌های بحرانی و هماهنگی برای اصلاحات",
-      "پایش Freshness ظرفیت و کاهش فاصله به‌روزرسانی",
-      "کمک در ساخت Watchlist و گزارش‌های عملیاتی",
-      "Escalation موارد پرریسک",
-      "پیشنهاد بهبود فرآیندهای ظرفیت"
-    ],
-    kpis:["Freshness capacity","Coverage","TTR بحران","Quality"],
-    tools:["Dashboards","Hotel Panel","CRM/Tickets"]
-  }
-};
-
-/* =========================
-   4) Load JOBS overrides
-========================= */
-function loadJobs(){
-  const raw = localStorage.getItem(LS_KEY);
-  if(!raw) return structuredClone(JOBS_DEFAULT);
-  const parsed = tryParseJSON(raw);
-  if(!parsed.ok) return structuredClone(JOBS_DEFAULT);
-  const merged = structuredClone(JOBS_DEFAULT);
-  for(const k of Object.keys(parsed.data || {})){
-    merged[k] = { ...(merged[k]||{}), ...(parsed.data[k]||{}) };
-  }
-  return merged;
-}
-let JOBS = loadJobs();
-
-function saveJobsToLS(){
-  localStorage.setItem(LS_KEY, JSON.stringify(JOBS, null, 2));
-}
-
-/* =========================
-   5) Scores (Google Sheet)
-========================= */
-function loadScoreCfg(){
-  const raw = localStorage.getItem(LS_SCORE_CFG);
-  if(!raw) return { csvUrl: "" };
-  const parsed = tryParseJSON(raw);
-  return parsed.ok ? parsed.data : { csvUrl:"" };
-}
-let SCORE_CFG = loadScoreCfg();
-
-function saveScoreCfg(){
-  localStorage.setItem(LS_SCORE_CFG, JSON.stringify(SCORE_CFG, null, 2));
-}
-
-function loadScores(){
-  const raw = localStorage.getItem(LS_SCORES);
-  if(!raw) return {};
-  const parsed = tryParseJSON(raw);
-  return parsed.ok ? parsed.data : {};
-}
-let SCORES = loadScores();
-
-function saveScores(){
-  localStorage.setItem(LS_SCORES, JSON.stringify(SCORES, null, 2));
-}
-
 function parseCSV(text){
-  // Simple CSV parser (handles quoted fields)
   const rows = [];
   let i=0, field="", row=[], inQuotes=false;
   while(i<text.length){
@@ -1300,7 +773,6 @@ function parseCSV(text){
   }
   row.push(field);
   if(row.length>1 || row[0] !== "") rows.push(row);
-
   if(rows.length === 0) return [];
   const headers = rows[0].map(h => String(h||"").trim().toLowerCase());
   const data = [];
@@ -1313,34 +785,46 @@ function parseCSV(text){
   }
   return data;
 }
-
+function normalizeGoogleSheetUrl(inputUrl){
+  const url = (inputUrl || "").trim();
+  if(!url) return "";
+  const m = url.match(/https:\/\/docs\.google\.com\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+  if(m){
+    const id = m[1];
+    const gidMatch = url.match(/[?&#]gid=(\d+)/);
+    const gid = gidMatch ? gidMatch[1] : "";
+    if(gid){
+      return `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&gid=${gid}`;
+    }
+    return `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv`;
+  }
+  return url;
+}
 async function fetchScores(){
-  const url = (SCORE_CFG.csvUrl || "").trim();
-  if(!url){
-    alert("لطفاً CSV URL را در تنظیمات وارد کن.");
+  const rawUrl = (SCORE_SHEET_URL || "").trim();
+  if(!rawUrl){
+    alert("لینک امتیازها تنظیم نشده. داخل کد مقدار SCORE_SHEET_URL را وارد کن (CSV / gviz).");
     return false;
   }
+  const url = normalizeGoogleSheetUrl(rawUrl);
   try{
     const res = await fetch(url, {cache:"no-store"});
     if(!res.ok) throw new Error("HTTP " + res.status);
     const text = await res.text();
     const data = parseCSV(text);
 
-    // Expect: id, score, updated_at(optional)
     const map = {};
     data.forEach(row=>{
       const id = String(row.id || "").trim();
       if(!id) return;
-      const scRaw = String(row.score ?? "").trim();
-      const sc = Number(scRaw);
+      const sc = Number(String(row.score ?? "").trim());
       if(Number.isFinite(sc)){
         map[id] = { score: sc, updated_at: String(row.updated_at || "").trim() };
       }
     });
-
     SCORES = map;
-    saveScores();
     applyScoresToUI();
+    if(currentPersonId) setScoreInModal(currentPersonId);
     return true;
   }catch(e){
     alert("خطا در دریافت امتیازها: " + (e?.message || e));
@@ -1348,114 +832,297 @@ async function fetchScores(){
   }
 }
 
-function scoreDotClass(score){
-  if(score >= 80) return "good";
-  if(score >= 60) return "mid";
-  return "low";
-}
+/* ========= Team Duties ========= */
+const TEAM = {
+  top:{label:"Management", duties:[
+    "طراحی و کنترل فرآیندهای Rate & Inventory / Capacity در کل شبکه",
+    "تعیین SLA اقدام، استاندارد کیفیت دیتا و کنترل ریسک عملیاتی",
+    "هدایت City Managers، تیم ظرفیت و تیم پنل/محتوا",
+    "مدیریت backlog توسعه پنل و اتوماسیون‌ها",
+    "Escalation و مدیریت بحران‌های نرخ/ظرفیت/Policy",
+    "گزارش‌دهی و برنامه بهبود عملکرد"
+  ]},
+  dom:{label:"هتل‌های داخلی", duties:[
+    "مدیریت ارتباط روزانه با هتل‌های داخلی برای نرخ/ظرفیت/پروموشن",
+    "بروزرسانی دقیق نرخ‌ها و قوانین فروش + کنترل کیفیت قبل از انتشار",
+    "کنترل Capacity و جلوگیری از Over/Under و Missed Sales",
+    "رفع مغایرت‌های نرخ/اطلاعات/اتاق‌ها با مستندات هتل",
+    "پایش KPIهای منطقه‌ای و Escalation به موقع"
+  ]},
+  for:{label:"هتل‌های خارجی", duties:[
+    "مدیریت نرخ/ظرفیت با حساسیت روی Currency، Tax/Fee و Policy",
+    "کنترل Policyها (Cancellation/No-show/Meal plan) و Mapping",
+    "هماهنگی با Account Manager و تیم پنل"
+  ]},
+  pan:{label:"توسعه پنل و محتوا", duties:[
+    "تحلیل نیازهای عملیاتی و تبدیل آن‌ها به فیچر/باگ قابل توسعه",
+    "افزایش اتوماسیون و کاهش خطای انسانی (Validation / Bulk Update / Logs)",
+    "بهبود UX پنل و مدیریت QA/Release",
+    "مدیریت محتوا و استانداردسازی داده"
+  ]},
+  cap:{label:"تیم ظرفیت", duties:[
+    "پایش روزانه Availability هتل‌های حساس و پرفروش",
+    "کنترل Over/Under و اقدام اصلاحی سریع",
+    "ساخت Watchlist ظرفیت و تعریف هشدارهای عملیاتی",
+    "گزارش دوره‌ای ظرفیت و موارد بحرانی"
+  ]}
+};
 
-/* =========================
-   6) Render helpers
-========================= */
-function avatarHTML(person){
-  const img = person.image ? String(person.image) : "";
-  const ini = initials(person.name || person.id || "--");
+/* ========= Chart Data (UPDATED) ========= */
+const CHART = {
+  top:{
+    id:"top", team:"top", type:"Head",
+    name:"محمد باقر ذوالفقاری",
+    role:"Head of Supply Chain",
+    chip:"Management",
+    ext:"100",
+    image:"./images/mbz.jpg"
+  },
+  departments:[
+    {
+      key:"dom",
+      titleFA:"هتل‌های داخلی",
+      titleEN:"Domestic Hotels",
+      team:"dom",
+      blocks:[
+        { managerId:"cm1", specs:["sp2","sp6"] },      // Bagheri: Salari + Biabangard
+        { managerId:"cm2", specs:["sp3","sp4"] },      // Ghodrati
+        { managerId:"cm3", specs:["sp5","sp7"] }       // Davtalab
+      ]
+    },
+    {
+      key:"for",
+      titleFA:"هتل‌های خارجی",
+      titleEN:"Foreign Hotels (NEW)",
+      team:"for",
+      stack:["for1","for2","for3"]
+    },
+    {
+      key:"pan",
+      titleFA:"توسعه پنل و محتوا",
+      titleEN:"Content & Panel Operations",
+      team:"pan",
+      stack:["pan1","pan2","pan3","pan4"]
+    },
+    {
+      key:"cap",
+      titleFA:"تیم ظرفیت",
+      titleEN:"Capacity Team",
+      team:"cap",
+      stack:["cap1"]  // ✅ فقط مهلا — علیرضا حذف شد
+    }
+  ],
+  people:{
+    cm1:{id:"cm1",team:"dom",type:"City Manager",name:"محدثه باقری",role:"City Manager — Center",chip:"Manager",ext:"210",image:"./images/m_bagheri.jpg"},
+    cm2:{id:"cm2",team:"dom",type:"City Manager",name:"نرگس قدرتی",role:"City Manager — East & South",chip:"Manager",ext:"220",image:"./images/n_ghodrati.jpg"},
+    cm3:{id:"cm3",team:"dom",type:"City Manager",name:"سپیده داوطلب",role:"City Manager — North & West",chip:"Manager",ext:"230",image:"./images/s_davtalab.jpg"},
+
+    // Domestic R&I (خسروی حذف شد)
+    sp2:{id:"sp2",team:"dom",type:"R&I Specialist",name:"فائزه سالاری",role:"Rate & Inventory — Domestic",chip:"R&I",ext:"241",image:"./images/f_salari.jpg"},
+    sp3:{id:"sp3",team:"dom",type:"R&I Specialist",name:"فاطمه رنجبر",role:"Rate & Inventory — Domestic",chip:"R&I",ext:"242",image:"./images/f_ranjbar.jpg"},
+    sp4:{id:"sp4",team:"dom",type:"R&I Specialist",name:"افسانه مرادی",role:"Rate & Inventory — Domestic",chip:"R&I",ext:"243",image:"./images/a_moradi.jpg"},
+    sp5:{id:"sp5",team:"dom",type:"R&I Specialist",name:"پگاه واعظین",role:"Rate & Inventory — Domestic",chip:"R&I",ext:"244",image:"./images/p_vaezin.jpg"},
+    sp7:{id:"sp7",team:"dom",type:"R&I Specialist",name:"فاطمه رحیمی",role:"Rate & Inventory — Domestic",chip:"R&I",ext:"245",image:"./images/f_rahimi.jpg"},
+    sp6:{id:"sp6",team:"dom",type:"R&I Specialist",name:"علیرضا بیابانگرد",role:"Rate & Inventory — Domestic",chip:"R&I",ext:"246",image:"./images/a_biabangard.jpg"},
+
+    // Foreign (محمد شجاع اضافه شد)
+    for1:{id:"for1",team:"for",type:"Account Manager",name:"Account Manager",role:"Foreign Hotels",chip:"Vacant",vacant:true,ext:"310",image:""},
+    for2:{id:"for2",team:"for",type:"R&I Specialist",name:"محمد شجاع",role:"Rate & Inventory — Foreign Hotels",chip:"R&I",ext:"312",image:"./images/m_shoja.jpg"},
+    for3:{id:"for3",team:"for",type:"R&I Specialist",name:"Rate & Inventory",role:"Foreign Hotels",chip:"Vacant",vacant:true,ext:"313",image:""},
+
+    // Panel & Content
+    pan1:{id:"pan1",team:"pan",type:"Lead",name:"منصوره یکتایی",role:"Lead — Panel Development",chip:"Lead",ext:"410",image:"./images/m_yektaei.jpg"},
+    pan2:{id:"pan2",team:"pan",type:"Developer",name:"پریا گلی",role:"Panel Developer",chip:"Team",ext:"411",image:"./images/p_goli.jpg"},
+    pan3:{id:"pan3",team:"pan",type:"Developer",name:"مهسا ناصری",role:"Panel Developer",chip:"Team",ext:"412",image:"./images/m_naseri.jpg"},
+    pan4:{id:"pan4",team:"pan",type:"Content Admin",name:"Content Admin",role:"City Project",chip:"Vacant",vacant:true,ext:"413",image:""},
+
+    // Capacity (فقط مهلا)
+    cap1:{id:"cap1",team:"cap",type:"Capacity Specialist",name:"مهلا بهرامی‌زاده",role:"Capacity Specialist",chip:"Capacity",ext:"330",image:"./images/m_bahramizade.jpg"}
+  }
+};
+
+/* ========= Job Descriptions ========= */
+const JOBS = {
+  top:{
+    overview:"رهبری زنجیره تأمین هتل‌ها برای تضمین درستی و به‌روز بودن نرخ/ظرفیت/محتوا، افزایش فروش و کاهش خطا و ریسک عملیاتی.",
+    responsibilities:[
+      "طراحی و کنترل فرآیندهای Rate & Inventory و Capacity در کل شبکه",
+      "هدایت City Managers، تیم ظرفیت و تیم پنل/محتوا",
+      "سیاست‌گذاری SLA اقدام و استاندارد کیفیت دیتا",
+      "مدیریت backlog توسعه پنل و اولویت‌بندی اتوماسیون‌ها",
+      "Escalation و مدیریت بحران‌ها",
+      "گزارش‌دهی و برنامه بهبود"
+    ],
+    kpis:["Freshness نرخ/ظرفیت","نرخ خطا","SLA اقدام","کاهش missed sales","اثرگذاری بر فروش/کانورژن"],
+    tools:["Hotel Panel","CRM/Tickets","Dashboards","Ops Channels"]
+  },
+  cm1:{ overview:"مالک عملکرد تامین هتل‌های منطقه Center؛ تضمین کیفیت نرخ/ظرفیت، کاهش خطا و پیشبرد فروش منطقه.",
+    responsibilities:["تقسیم کار و کنترل کیفیت","مدیریت مغایرت‌ها و Escalation","پایش KPI منطقه","هماهنگی با هتل‌ها","گزارش‌دهی منظم"],
+    kpis:["Freshness","SLA","کاهش خطا","کاهش backlog","رشد فروش منطقه"],
+    tools:["Hotel Panel","CRM/Tickets","Dashboards"]
+  },
+  cm2:{ overview:"مالک عملکرد تامین هتل‌های East & South؛ کنترل ریسک پیک‌ها و بهبود سرعت اقدام.",
+    responsibilities:["هدایت تیم منطقه","کنترل ظرفیت در پیک‌ها","QA تغییرات حساس","رفع مغایرت‌ها","گزارش نیازهای سیستمی"],
+    kpis:["Freshness","Lead time","Coverage ظرفیت","کاهش برگشت کار"],
+    tools:["Hotel Panel","CRM/Tickets","Dashboards"]
+  },
+  cm3:{ overview:"مالک عملکرد تامین هتل‌های North & West؛ پایش نرخ رقابتی و حفظ کیفیت داده.",
+    responsibilities:["کنترل کیفی نرخ/قوانین","پایش نرخ رقابتی","کنترل Stop-sell","رفع مغایرت‌ها","گزارش KPI"],
+    kpis:["Freshness","TTR مغایرت","کاهش خطای تکراری","بهبود Conversion"],
+    tools:["Hotel Panel","CRM/Tickets","Dashboards"]
+  },
+
+  sp2:{ overview:"اجرای Rate & Inventory داخلی با تمرکز بر سرعت اقدام و دقت داده.",
+    responsibilities:["آپدیت نرخ/محدودیت‌ها","آپدیت ظرفیت/Stop-sell","اعمال پروموشن‌ها","رفع مغایرت‌ها","ثبت لاگ"],
+    kpis:["Freshness","SLA","کاهش خطا","کیفیت نمایش"],
+    tools:["Hotel Panel","CRM/Tickets","Checklists"]
+  },
+  sp3:{ overview:"اجرای دقیق تغییرات نرخ/ظرفیت داخلی و کمک به کاهش ریسک فروش.",
+    responsibilities:["بروزرسانی نرخ/قوانین","آپدیت Availability","رفع مغایرت با هتل","کنترل مپینگ اتاق","ثبت لاگ"],
+    kpis:["نرخ خطا","Freshness","SLA","TTR مغایرت"],
+    tools:["Hotel Panel","CRM/Tickets","Dashboards"]
+  },
+  sp4:{ overview:"پایش کیفیت اطلاعات و اجرای عملیات Rate & Inventory داخلی.",
+    responsibilities:["ثبت نرخ/ظرفیت","کنترل Policyها","رفع مغایرت اطلاعاتی","اعمال پروموشن‌ها","مستندسازی"],
+    kpis:["کیفیت Policy","Freshness","کاهش خطای تکراری"],
+    tools:["Hotel Panel","CRM/Tickets","Docs/Sheets"]
+  },
+  sp5:{ overview:"اجرای بروزرسانی‌های نرخ/ظرفیت و مدیریت استثناها برای کاهش missed sales.",
+    responsibilities:["آپدیت نرخ","کنترل ظرفیت بحرانی","رفع مغایرت","QA نمونه‌ای","گزارش موارد مهم"],
+    kpis:["Freshness","Coverage","SLA","کاهش missed sales"],
+    tools:["Hotel Panel","Dashboards","Checklists"]
+  },
+  sp6:{ overview:"پشتیبانی Rate & Inventory داخلی با تمرکز بر دقت، سرعت و کاهش ریسک فروش.",
+    responsibilities:["ثبت تغییرات","رفع مغایرت پرتکرار","کنترل قوانین/اطلاعات","گزارش موارد بحرانی","هماهنگی با CM"],
+    kpis:["SLA","نرخ خطا","Freshness","TTR"],
+    tools:["Hotel Panel","CRM/Tickets","Checklists"]
+  },
+  sp7:{ overview:"اجرای Rate & Inventory داخلی با تمرکز بر کیفیت دیتا و کاهش برگشت کار.",
+    responsibilities:["آپدیت نرخ/ظرفیت","رفع خطای تکراری","کنترل نمایش","ثبت لاگ","همکاری با CM"],
+    kpis:["Freshness","SLA","کیفیت نمایش","کاهش backlog"],
+    tools:["Hotel Panel","CRM/Tickets","Dashboards"]
+  },
+
+  for1:{ overview:"(Vacant) مدیریت ارتباط با هتل‌های خارجی؛ دریافت نرخ/قرارداد/قوانین و تضمین فروش‌پذیری.",
+    responsibilities:["مدیریت ارتباط با تامین‌کننده","دریافت و کنترل قوانین/Policy","حل اختلافات نرخ/Tax/Fee","هماهنگی با پنل"],
+    kpis:["تعداد هتل فعال","Freshness خارجی","TTR مغایرت","رشد فروش خارجی"],
+    tools:["Provider Panels","CRM/Tickets","Dashboards"]
+  },
+  for2:{ overview:"مدیریت و اجرای نرخ و ظرفیت هتل‌های خارجی با تمرکز بر صحت Policy، Currency و جلوگیری از مغایرت‌های فروش.",
+    responsibilities:["آپدیت نرخ با ارز/Tax/Fee","مدیریت Availability/Stop-sell","کنترل Cancellation/No-show/Meal plan","رفع مغایرت با تامین‌کننده","گزارش نیازهای پنل"],
+    kpis:["Freshness خارجی","کیفیت Policy","SLA اقدام","کاهش مغایرت"],
+    tools:["Provider Panels","CRM/Tickets","Dashboards","Sheets"]
+  },
+  for3:{ overview:"(Vacant) اجرای Rate & Inventory خارجی (پوزیشن دوم) برای افزایش ظرفیت اجرایی تیم.",
+    responsibilities:["آپدیت نرخ/ظرفیت","کنترل صحیح نمایش","رفع مغایرت پرتکرار","گزارش‌دهی"],
+    kpis:["Freshness","SLA","TTR","نرخ خطا"],
+    tools:["Provider Panels","CRM/Tickets"]
+  },
+
+  pan1:{ overview:"رهبری توسعه پنل/اتوماسیون عملیات تامین برای افزایش سرعت و کاهش خطا.",
+    responsibilities:["مدیریت backlog","تحلیل نیاز عملیات","QA/Release discipline","طراحی Validation/Logs","UAT"],
+    kpis:["زمان تحویل","Impact اتوماسیون","کیفیت Release","رضایت عملیات"],
+    tools:["Issue Tracker","Repo/CI","Panel Admin"]
+  },
+  pan2:{ overview:"توسعه فیچرها و ابزارهای عملیاتی پنل با تمرکز بر سرعت اقدام تیم.",
+    responsibilities:["توسعه فیچر","رفع باگ","Bulk Update/Validation","بهبود UX","مستندسازی"],
+    kpis:["Velocity","Time-to-fix","Stability","Bug return rate"],
+    tools:["Git","Issue Tracker","Monitoring"]
+  },
+  pan3:{ overview:"پشتیبانی توسعه پنل و اجرای بهبودهای سریع‌اثر.",
+    responsibilities:["رفع باگ","بهبود لاگ/Audit","پشتیبانی UAT","مستندسازی"],
+    kpis:["Time-to-fix","Regression","Stability"],
+    tools:["Git","Issue Tracker","Panel"]
+  },
+  pan4:{ overview:"(Vacant) مدیریت محتوا: تکمیل داده‌ها و استانداردسازی برای افزایش conversion.",
+    responsibilities:["تکمیل مشخصات/قوانین/تصاویر","استانداردسازی نام‌گذاری","QA صفحات","پایش کامل بودن محتوا"],
+    kpis:["Content completeness","Quality errors","Conversion impact"],
+    tools:["CMS/Panel","Checklists"]
+  },
+
+  cap1:{ overview:"کنترل و بهینه‌سازی ظرفیت/Availability برای کاهش missed sales و جلوگیری از overbooking.",
+    responsibilities:["پایش Availability","کنترل Over/Under","هماهنگی با CMها","ساخت Watchlist","گزارش موارد بحرانی"],
+    kpis:["Coverage","کاهش missed sales","کاهش over incidents","Speed of response"],
+    tools:["Dashboards","Hotel Panel","CRM/Tickets"]
+  }
+};
+
+/* ========= UI Builders ========= */
+function displayName(p){
+  const ext = p.ext ? ` <span style="color:#64748b;font-size:12px;font-weight:950">· ${esc(p.ext)}</span>` : "";
+  return `${esc(p.name)}${ext}`;
+}
+function avatarHTML(p){
+  const img = p.image ? String(p.image) : "";
+  const ini = initials(p.name || p.id || "--");
   if(!img){
     return `<div class="avatar"><div class="initials">${esc(ini)}</div></div>`;
   }
   return `
     <div class="avatar">
-      <img src="${esc(img)}" alt="${esc(person.name||"")}"
-        onerror="this.remove(); this.parentNode.innerHTML='<div class=&quot;initials&quot;>${esc(ini)}</div>';">
+      <img src="${esc(img)}" alt="${esc(p.name||"")}" crossorigin="anonymous"
+           onerror="this.remove(); this.parentNode.innerHTML='<div class=&quot;initials&quot;>${esc(ini)}</div>';">
     </div>
   `;
 }
-
-function chipClass(teamKey){
-  const t = TEAM[teamKey]?.pillClass || "";
-  return t ? `pill ${t}` : "pill";
-}
-function accentClass(teamKey){
-  const t = TEAM[teamKey]?.pillClass || "";
-  return t ? `accent ${t}` : "accent";
-}
-
-function scoreHTML(personId){
-  const s = SCORES[personId];
-  if(!s || typeof s.score !== "number") return `<span class="scorePill" data-score-id="${esc(personId)}"></span>`;
+function scoreHTML(id){
+  const s = SCORES[id];
+  if(!s || typeof s.score !== "number") return `<span class="scorePill" data-score-id="${esc(id)}"></span>`;
   const cls = scoreDotClass(s.score);
-  return `
-    <span class="scorePill show" data-score-id="${esc(personId)}" title="${esc(s.updated_at || "")}">
-      <span class="dot ${cls}"></span>
-      <span>${esc(String(s.score))}</span>
-    </span>
-  `;
+  return `<span class="scorePill show" data-score-id="${esc(id)}" title="${esc(s.updated_at||"")}"><span class="dot ${cls}"></span><span>${esc(String(s.score))}</span></span>`;
 }
-
-function personCard(person){
-  const teamPill = TEAM[person.team]?.pillClass || "";
-  const pill = person.vacant ? `pill vacant ${teamPill}` : `pill ${teamPill}`;
-  const chipText = person.vacant ? "Vacant" : (person.chip || person.type || "");
-  const s = scoreHTML(person.id);
-
+function personCard(p){
+  const chipText = p.vacant ? "Vacant" : (p.chip || p.type || "");
+  const pillCls = p.vacant ? "pill vacant" : "pill";
   return `
-    <div class="card person" data-id="${esc(person.id)}" role="button" tabindex="0"
-         data-name="${esc(person.name)}" data-role="${esc(person.role)}" data-team="${esc(TEAM[person.team]?.label || person.team)}">
-      ${avatarHTML(person)}
+    <div class="card person" data-id="${esc(p.id)}"
+         data-name="${esc(p.name)}" data-role="${esc(p.role)}" data-team="${esc(TEAM[p.team]?.label||p.team)}" tabindex="0">
+      ${avatarHTML(p)}
       <div class="meta">
-        <div class="name">${esc(person.name)}</div>
-        <div class="role">${esc(person.role)}</div>
+        <div class="name">${displayName(p)}</div>
+        <div class="role">${esc(p.role)}</div>
       </div>
-      ${s}
-      <span class="${esc(pill)}">${esc(chipText)}</span>
-      <div class="${esc(accentClass(person.team))}"></div>
+      ${scoreHTML(p.id)}
+      <span class="${pillCls}">${esc(chipText)}</span>
     </div>
   `;
 }
-
-function teamHeaderCard(dept){
-  return `
-    <div class="card team">
-      <div class="meta">
-        <div class="name">${esc(dept.titleFA)}</div>
-        <div class="role">${esc(dept.titleEN)}</div>
-      </div>
-      <button class="teamDutiesBtn" data-team="${esc(dept.team)}">وظایف تیم</button>
-      <span class="pill ${TEAM[dept.team].pillClass}">${esc(dept.chip)}</span>
-      <div class="accent ${TEAM[dept.team].pillClass}"></div>
-    </div>
-  `;
-}
-
 function topCard(){
   const p = CHART.top;
   return `
     <div class="card head">
       ${avatarHTML(p)}
       <div class="meta">
-        <div class="name">${esc(p.name)}</div>
+        <div class="name">${displayName(p)}</div>
         <div class="role">${esc(p.role)}</div>
       </div>
       ${scoreHTML("top")}
       <span class="pill">${esc(p.chip)}</span>
-      <div class="accent"></div>
+    </div>
+  `;
+}
+function teamHeader(dept){
+  return `
+    <div class="teamHeader">
+      <div class="t">
+        <div class="a">${esc(dept.titleFA)}</div>
+        <div class="b">${esc(dept.titleEN)}</div>
+      </div>
+      <button class="btnTiny" data-team="${esc(dept.team)}">وظایف تیم</button>
     </div>
   `;
 }
 
-/* =========================
-   7) Render chart
-========================= */
-function renderChart(){
+/* ========= Render ========= */
+function render(){
   document.getElementById("node-top").innerHTML = topCard();
-
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
 
   for(const dept of CHART.departments){
     const col = document.createElement("div");
     col.className = "col";
-    col.innerHTML += teamHeaderCard(dept);
+    col.innerHTML = teamHeader(dept);
 
     const body = document.createElement("div");
     body.className = "sectionBody";
@@ -1464,25 +1131,26 @@ function renderChart(){
       for(const b of dept.blocks){
         const block = document.createElement("div");
         block.className = "managerBlock";
-
-        block.innerHTML += personCard(CHART.people[b.managerId]);
+        block.innerHTML = personCard(CHART.people[b.managerId]);
 
         const sub = document.createElement("div");
         sub.className = "subList";
-
         for(const sid of b.specs){
-          const spec = CHART.people[sid];
-          const wrap = document.createElement("div");
-          wrap.className = "subItem";
-          wrap.innerHTML = personCard(spec);
-          sub.appendChild(wrap);
+          const sp = CHART.people[sid];
+          if(!sp) continue;
+          const w = document.createElement("div");
+          w.className = "subItem";
+          w.innerHTML = personCard(sp);
+          sub.appendChild(w);
         }
         block.appendChild(sub);
         body.appendChild(block);
       }
     } else {
       for(const id of (dept.stack||[])){
-        body.innerHTML += personCard(CHART.people[id]);
+        const p = CHART.people[id];
+        if(!p) continue;
+        body.innerHTML += personCard(p);
       }
     }
 
@@ -1490,27 +1158,37 @@ function renderChart(){
     grid.appendChild(col);
   }
 
-  wireInteractions();
+  wire();
   applyScoresToUI();
-  applySearch(); // keep filter after re-render
+  applySearch();
+  requestAnimationFrame(redrawLines);
 }
 
-/* =========================
-   8) Minimal lines: top -> team headers
-========================= */
+/* ========= Nicer curved lines ========= */
 function rect(el, stage){
   const r = el.getBoundingClientRect();
   const s = stage.getBoundingClientRect();
-  return { cx:(r.left+r.right)/2 - s.left, top:r.top - s.top, bottom:r.bottom - s.top };
+  return { left:r.left-s.left, right:r.right-s.left, top:r.top-s.top, bottom:r.bottom-s.top, cx:(r.left+r.right)/2 - s.left };
 }
-function addLine(svg,x1,y1,x2,y2){
-  const L = document.createElementNS("http://www.w3.org/2000/svg","line");
-  L.setAttribute("x1",x1); L.setAttribute("y1",y1);
-  L.setAttribute("x2",x2); L.setAttribute("y2",y2);
-  L.setAttribute("stroke","var(--line)");
-  L.setAttribute("stroke-width","2");
-  L.setAttribute("stroke-linecap","round");
-  svg.appendChild(L);
+function svgPath(d){
+  const p = document.createElementNS("http://www.w3.org/2000/svg","path");
+  p.setAttribute("d", d);
+  p.setAttribute("fill","none");
+  p.setAttribute("stroke","url(#lg)");
+  p.setAttribute("stroke-width","2.2");
+  p.setAttribute("stroke-linecap","round");
+  p.setAttribute("stroke-linejoin","round");
+  p.setAttribute("opacity","0.95");
+  return p;
+}
+function svgDot(x,y){
+  const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+  c.setAttribute("cx", x);
+  c.setAttribute("cy", y);
+  c.setAttribute("r", 3.4);
+  c.setAttribute("fill", "#94a3b8");
+  c.setAttribute("opacity","0.9");
+  return c;
 }
 function redrawLines(){
   const stage = document.getElementById("stage");
@@ -1520,29 +1198,60 @@ function redrawLines(){
   const sr = stage.getBoundingClientRect();
   svg.setAttribute("viewBox", `0 0 ${sr.width} ${sr.height}`);
 
+  // defs gradient
+  const defs = document.createElementNS("http://www.w3.org/2000/svg","defs");
+  const lg = document.createElementNS("http://www.w3.org/2000/svg","linearGradient");
+  lg.setAttribute("id","lg");
+  lg.setAttribute("x1","0"); lg.setAttribute("y1","0");
+  lg.setAttribute("x2","0"); lg.setAttribute("y2","1");
+  const s1 = document.createElementNS("http://www.w3.org/2000/svg","stop");
+  s1.setAttribute("offset","0%");
+  s1.setAttribute("stop-color","#cbd5e1");
+  const s2 = document.createElementNS("http://www.w3.org/2000/svg","stop");
+  s2.setAttribute("offset","100%");
+  s2.setAttribute("stop-color","#94a3b8");
+  lg.appendChild(s1); lg.appendChild(s2);
+  defs.appendChild(lg);
+  svg.appendChild(defs);
+
   const top = stage.querySelector("#node-top .card");
-  if(!top) return;
+  const teamCards = [...stage.querySelectorAll(".teamHeader")];
+  if(!top || teamCards.length === 0) return;
+
   const topR = rect(top, stage);
+  const tRects = teamCards.map(c => rect(c, stage));
 
-  const teamCards = [...stage.querySelectorAll(".card.team")];
-  if(teamCards.length === 0) return;
+  const yMid = Math.min(...tRects.map(t => t.top)) - 18;
+  const xMin = Math.min(...tRects.map(t => t.cx));
+  const xMax = Math.max(...tRects.map(t => t.cx));
 
-  const teamRects = teamCards.map(c => rect(c, stage));
-  const y = Math.min(...teamRects.map(t => t.top)) - 16;
+  // vertical from top to mid with smooth curve
+  const x0 = topR.cx, y0 = topR.bottom;
+  const y1 = yMid;
 
-  addLine(svg, topR.cx, topR.bottom, topR.cx, y);
-  addLine(svg, Math.min(...teamRects.map(t=>t.cx)), y, Math.max(...teamRects.map(t=>t.cx)), y);
-  teamRects.forEach(t => addLine(svg, t.cx, y, t.cx, t.top));
+  // main trunk
+  svg.appendChild(svgPath(`M ${x0} ${y0} C ${x0} ${y0+24}, ${x0} ${y1-24}, ${x0} ${y1}`));
+  svg.appendChild(svgDot(x0, y0));
+  svg.appendChild(svgDot(x0, y1));
+
+  // horizontal bus (as a smooth curve)
+  const bus = svgPath(`M ${xMin} ${y1} C ${xMin+40} ${y1}, ${xMax-40} ${y1}, ${xMax} ${y1}`);
+  svg.appendChild(bus);
+
+  // branches down to each team header
+  tRects.forEach(t=>{
+    const xb = t.cx;
+    const yb = t.top;
+    const d = `M ${xb} ${y1} C ${xb} ${y1+22}, ${xb} ${yb-22}, ${xb} ${yb}`;
+    svg.appendChild(svgPath(d));
+    svg.appendChild(svgDot(xb, yb));
+  });
 }
 
-/* =========================
-   9) Modal + Editor
-========================= */
+/* ========= Modal ========= */
 const modalBack = document.getElementById("modalBack");
 const btnClose = document.getElementById("btnClose");
-const btnEdit = document.getElementById("btnEdit");
 const btnRefreshScores = document.getElementById("btnRefreshScores");
-
 const mAvatar = document.getElementById("mAvatar");
 const mName = document.getElementById("mName");
 const mRole = document.getElementById("mRole");
@@ -1551,22 +1260,6 @@ const mTypePill = document.getElementById("mTypePill");
 const mScorePill = document.getElementById("mScorePill");
 const mScoreDot = document.getElementById("mScoreDot");
 const mScoreText = document.getElementById("mScoreText");
-
-const tabOverview = document.getElementById("tab-overview");
-const tabResp = document.getElementById("tab-resp");
-const tabKpi = document.getElementById("tab-kpi");
-const tabTools = document.getElementById("tab-tools");
-const tabTeam = document.getElementById("tab-team");
-
-const editorBox = document.getElementById("editorBox");
-const edOverview = document.getElementById("edOverview");
-const edResp = document.getElementById("edResp");
-const edKpis = document.getElementById("edKpis");
-const edTools = document.getElementById("edTools");
-
-const btnSavePerson = document.getElementById("btnSavePerson");
-const btnExportPerson = document.getElementById("btnExportPerson");
-const btnCancelEdit = document.getElementById("btnCancelEdit");
 
 let currentPersonId = null;
 let currentPerson = null;
@@ -1582,8 +1275,7 @@ function setScoreInModal(id){
   mScoreDot.className = "dot " + scoreDotClass(s.score);
   mScorePill.title = s.updated_at || "";
 }
-
-function openModalForPerson(id){
+function openModal(id){
   const person = (id === "top") ? CHART.top : CHART.people[id];
   if(!person) return;
 
@@ -1597,121 +1289,97 @@ function openModalForPerson(id){
     const img = document.createElement("img");
     img.src = person.image;
     img.alt = person.name || "";
+    img.crossOrigin = "anonymous";
+    img.style.width="100%"; img.style.height="100%"; img.style.objectFit="cover"; img.style.display="block";
     img.onerror = () => { mAvatar.innerHTML = `<div class="initials">${esc(ini)}</div>`; };
     mAvatar.appendChild(img);
   } else {
     mAvatar.innerHTML = `<div class="initials">${esc(ini)}</div>`;
   }
 
-  mName.textContent = person.name || "—";
+  const extText = person.ext ? ` <span style="font-size:13px;color:#64748b">· ${esc(person.ext)}</span>` : "";
+  mName.innerHTML = `${esc(person.name)}${extText}`;
   mRole.textContent = person.role || "—";
 
-  const teamKey = person.team || "top";
-  mTeamPill.className = chipClass(teamKey);
-  mTeamPill.textContent = TEAM[teamKey]?.label || "—";
-
+  mTeamPill.className = "pill";
+  mTeamPill.textContent = TEAM[person.team]?.label || "—";
   mTypePill.className = "pill";
   mTypePill.textContent = person.type || (person.vacant ? "Vacant" : "—");
 
   setScoreInModal(id);
 
-  const jd = JOBS[id] || JOBS_DEFAULT[id] || { overview:"شرح شغلی ثبت نشده است.", responsibilities:[], kpis:[], tools:[] };
+  const jd = JOBS[id] || {overview:"شرح شغلی ثبت نشده است.", responsibilities:[], kpis:[], tools:[]};
 
-  tabOverview.innerHTML = `
-    <div class="sectionTitle">Mission / Overview</div>
-    <div class="leadText">${esc(jd.overview || "—")}</div>
+  document.getElementById("tab-overview").innerHTML = `
+    <div style="font-weight:950;color:rgba(15,23,42,.78);margin:0 0 8px;">Mission / Overview</div>
+    <div style="line-height:2;color:rgba(15,23,42,.88);font-weight:850;background:rgba(15,23,42,.03);border:1px solid rgba(15,23,42,.07);border-radius:16px;padding:12px;">
+      ${esc(jd.overview)}
+    </div>
   `;
-  tabResp.innerHTML = `
-    <div class="sectionTitle">Responsibilities</div>
-    <ul class="clean">
+  document.getElementById("tab-resp").innerHTML = `
+    <div style="font-weight:950;color:rgba(15,23,42,.78);margin:0 0 8px;">Responsibilities</div>
+    <ul style="margin:0;padding-right:18px;line-height:2;color:rgba(15,23,42,.88);font-weight:850;">
       ${(jd.responsibilities||[]).map(x=>`<li>${esc(x)}</li>`).join("") || "<li>—</li>"}
     </ul>
   `;
-  tabKpi.innerHTML = `
-    <div class="sectionTitle">KPIs</div>
-    <div class="kpiGrid">
+  document.getElementById("tab-kpi").innerHTML = `
+    <div style="font-weight:950;color:rgba(15,23,42,.78);margin:0 0 8px;">KPIs</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
       ${(jd.kpis||[]).map(k=>`
-        <div class="kpiCard"><div class="k">KPI</div><div class="v">${esc(k)}</div></div>
-      `).join("") || `<div class="kpiCard"><div class="k">KPI</div><div class="v">—</div></div>`}
+        <div style="border:1px solid rgba(15,23,42,.08);border-radius:18px;padding:12px;background:rgba(248,250,252,.9);">
+          <div style="font-weight:950;margin-bottom:6px;">KPI</div>
+          <div style="color:rgba(15,23,42,.80);font-weight:850;line-height:1.9;">${esc(k)}</div>
+        </div>
+      `).join("") || `<div style="border:1px solid rgba(15,23,42,.08);border-radius:18px;padding:12px;background:rgba(248,250,252,.9);">—</div>`}
     </div>
   `;
-  tabTools.innerHTML = `
-    <div class="sectionTitle">Tools / Interactions</div>
-    <ul class="clean">
+  document.getElementById("tab-tools").innerHTML = `
+    <div style="font-weight:950;color:rgba(15,23,42,.78);margin:0 0 8px;">Tools</div>
+    <ul style="margin:0;padding-right:18px;line-height:2;color:rgba(15,23,42,.88);font-weight:850;">
       ${(jd.tools||[]).map(x=>`<li>${esc(x)}</li>`).join("") || "<li>—</li>"}
     </ul>
   `;
-
-  const team = TEAM[teamKey] || TEAM.top;
-  tabTeam.innerHTML = `
-    <div class="sectionTitle">Team Duties — ${esc(team.label)}</div>
-    <div class="leadText" style="background:rgba(248,250,252,.9)">
-      <ul class="clean" style="margin:0">
-        ${(team.duties||[]).map(x=>`<li>${esc(x)}</li>`).join("")}
+  const td = TEAM[person.team]?.duties || [];
+  document.getElementById("tab-team").innerHTML = `
+    <div style="font-weight:950;color:rgba(15,23,42,.78);margin:0 0 8px;">Team Duties — ${esc(TEAM[person.team]?.label||"")}</div>
+    <div style="background:rgba(248,250,252,.9);border:1px solid rgba(15,23,42,.08);border-radius:18px;padding:12px;">
+      <ul style="margin:0;padding-right:18px;line-height:2;color:rgba(15,23,42,.88);font-weight:850;">
+        ${td.map(x=>`<li>${esc(x)}</li>`).join("") || "<li>—</li>"}
       </ul>
     </div>
   `;
 
-  // editor
-  edOverview.value = jd.overview || "";
-  edResp.value = (jd.responsibilities || []).join("\n");
-  edKpis.value = (jd.kpis || []).join("\n");
-  edTools.value = (jd.tools || []).join("\n");
+  // show modal
+  modalBack.style.display = "flex";
 
-  modalBack.classList.add("open");
-  modalBack.setAttribute("aria-hidden","false");
+  // set tab active
   setActiveTab("tab-overview");
-  closeEditor();
 }
-
 function closeModal(){
-  modalBack.classList.remove("open");
-  modalBack.setAttribute("aria-hidden","true");
+  modalBack.style.display = "none";
   currentPersonId = null;
   currentPerson = null;
-  closeEditor();
 }
-
 btnClose.addEventListener("click", closeModal);
-modalBack.addEventListener("click", (e)=>{ if(e.target === modalBack) closeModal(); });
-document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") { closeModal(); closeLightbox(); } });
+modalBack.addEventListener("click",(e)=>{ if(e.target===modalBack) closeModal(); });
+document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") { closeModal(); closeLightbox(); } });
 
-function setActiveTab(tabId){
-  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-  document.querySelectorAll(".tabContent").forEach(c => c.classList.remove("active"));
-  document.querySelector(`.tab[data-tab="${tabId}"]`)?.classList.add("active");
-  document.getElementById(tabId)?.classList.add("active");
+function setActiveTab(id){
+  document.querySelectorAll(".tab").forEach(t=>{
+    t.classList.remove("active");
+    t.style.background="#fff"; t.style.color="#0f172a";
+  });
+  document.querySelectorAll(".tabContent").forEach(c=>{ c.style.display="none"; c.classList.remove("active"); });
+  const t = document.querySelector(`.tab[data-tab="${id}"]`);
+  if(t){
+    t.classList.add("active");
+    t.style.background="#0f172a"; t.style.color="#fff";
+  }
+  const c = document.getElementById(id);
+  if(c){ c.style.display="block"; c.classList.add("active"); }
 }
 document.querySelectorAll(".tab").forEach(t=>{
   t.addEventListener("click", ()=> setActiveTab(t.dataset.tab));
-});
-
-function openEditor(){
-  editorBox.classList.add("open");
-  setActiveTab("tab-editor");
-}
-function closeEditor(){ editorBox.classList.remove("open"); }
-
-btnEdit.addEventListener("click", ()=>{ if(currentPersonId) openEditor(); });
-btnCancelEdit.addEventListener("click", ()=>{ closeEditor(); setActiveTab("tab-overview"); });
-
-btnSavePerson.addEventListener("click", ()=>{
-  if(!currentPersonId) return;
-  JOBS[currentPersonId] = {
-    overview: edOverview.value.trim(),
-    responsibilities: edResp.value.split("\n").map(s=>s.trim()).filter(Boolean),
-    kpis: edKpis.value.split("\n").map(s=>s.trim()).filter(Boolean),
-    tools: edTools.value.split("\n").map(s=>s.trim()).filter(Boolean),
-  };
-  saveJobsToLS();
-  openModalForPerson(currentPersonId);
-});
-
-btnExportPerson.addEventListener("click", ()=>{
-  if(!currentPersonId) return;
-  const out = {};
-  out[currentPersonId] = JOBS[currentPersonId] || JOBS_DEFAULT[currentPersonId] || {};
-  downloadText(`job_${currentPersonId}.json`, JSON.stringify(out, null, 2));
 });
 
 btnRefreshScores.addEventListener("click", async ()=>{
@@ -1719,16 +1387,14 @@ btnRefreshScores.addEventListener("click", async ()=>{
   if(ok && currentPersonId) setScoreInModal(currentPersonId);
 });
 
-/* =========================
-   10) Lightbox (zoom image)
-========================= */
+/* ========= Lightbox ========= */
 const lbBack = document.getElementById("lbBack");
 const lbImg = document.getElementById("lbImg");
 const lbTitle = document.getElementById("lbTitle");
-const lbClose = document.getElementById("lbClose");
 const lbZoomIn = document.getElementById("lbZoomIn");
 const lbZoomOut = document.getElementById("lbZoomOut");
 const lbReset = document.getElementById("lbReset");
+const lbClose = document.getElementById("lbClose");
 
 let lbScale = 1;
 
@@ -1738,154 +1404,47 @@ function openLightbox(){
   lbImg.style.transform = "scale(1)";
   lbImg.src = currentPerson.image;
   lbTitle.textContent = currentPerson.name || "Photo";
-  lbBack.classList.add("open");
-  lbBack.setAttribute("aria-hidden","false");
+  lbBack.style.display = "flex";
 }
-function closeLightbox(){
-  lbBack.classList.remove("open");
-  lbBack.setAttribute("aria-hidden","true");
-}
+function closeLightbox(){ lbBack.style.display = "none"; }
 function applyLBScale(){
   lbScale = clamp(lbScale, 1, 4);
   lbImg.style.transform = `scale(${lbScale})`;
-  lbImg.style.cursor = (lbScale >= 4) ? "zoom-out" : "zoom-in";
 }
-
-mAvatar.addEventListener("click", openLightbox);
-
+document.getElementById("mAvatar").addEventListener("click", openLightbox);
 lbClose.addEventListener("click", closeLightbox);
-lbBack.addEventListener("click", (e)=>{ if(e.target === lbBack) closeLightbox(); });
-lbZoomIn.addEventListener("click", ()=>{ lbScale += 0.25; applyLBScale(); });
-lbZoomOut.addEventListener("click", ()=>{ lbScale -= 0.25; applyLBScale(); });
-lbReset.addEventListener("click", ()=>{ lbScale = 1; applyLBScale(); });
-lbImg.addEventListener("click", ()=>{
-  lbScale = (lbScale >= 2.5) ? 1 : (lbScale + 0.75);
-  applyLBScale();
-});
-lbBack.addEventListener("wheel", (e)=>{
-  if(!lbBack.classList.contains("open")) return;
-  e.preventDefault();
-  lbScale += (e.deltaY > 0 ? -0.1 : 0.1);
-  applyLBScale();
-}, {passive:false});
+lbBack.addEventListener("click",(e)=>{ if(e.target===lbBack) closeLightbox(); });
+lbZoomIn.addEventListener("click",()=>{ lbScale += 0.25; applyLBScale(); });
+lbZoomOut.addEventListener("click",()=>{ lbScale -= 0.25; applyLBScale(); });
+lbReset.addEventListener("click",()=>{ lbScale = 1; applyLBScale(); });
+lbImg.addEventListener("click",()=>{ lbScale = (lbScale>=2.5)?1:(lbScale+0.75); applyLBScale(); });
 
-/* =========================
-   11) Admin Drawer
-========================= */
-const btnAdmin = document.getElementById("btnAdmin");
-const btnReset = document.getElementById("btnReset");
-const drawerBack = document.getElementById("drawerBack");
-const drawer = document.getElementById("drawer");
-const drawerText = document.getElementById("drawerText");
-const drawerClose = document.getElementById("drawerClose");
-const drawerLoad = document.getElementById("drawerLoad");
-const drawerApply = document.getElementById("drawerApply");
-const drawerExport = document.getElementById("drawerExport");
-const drawerImport = document.getElementById("drawerImport");
-
-const scoreCsvUrl = document.getElementById("scoreCsvUrl");
-const btnSaveScoreConfig = document.getElementById("btnSaveScoreConfig");
-const btnFetchScores = document.getElementById("btnFetchScores");
-
-function openDrawer(){
-  drawerBack.classList.add("open");
-  drawer.classList.add("open");
-}
-function closeDrawer(){
-  drawerBack.classList.remove("open");
-  drawer.classList.remove("open");
-}
-
-btnAdmin.addEventListener("click", ()=>{
-  openDrawer();
-  drawerText.value = JSON.stringify(JOBS, null, 2);
-  scoreCsvUrl.value = SCORE_CFG.csvUrl || "";
-});
-
-drawerClose.addEventListener("click", closeDrawer);
-drawerBack.addEventListener("click", closeDrawer);
-
-drawerLoad.addEventListener("click", ()=>{ drawerText.value = JSON.stringify(JOBS, null, 2); });
-
-drawerApply.addEventListener("click", ()=>{
-  const parsed = tryParseJSON(drawerText.value);
-  if(!parsed.ok){ alert("JSON معتبر نیست: " + parsed.error); return; }
-  const merged = structuredClone(JOBS_DEFAULT);
-  for(const k of Object.keys(parsed.data || {})){
-    merged[k] = { ...(merged[k]||{}), ...(parsed.data[k]||{}) };
-  }
-  JOBS = merged;
-  saveJobsToLS();
-  alert("اعمال شد ✅");
-});
-
-drawerExport.addEventListener("click", ()=> downloadText("jobs_all.json", JSON.stringify(JOBS, null, 2)));
-
-drawerImport.addEventListener("change", async (e)=>{
-  const file = e.target.files?.[0];
-  if(!file) return;
-  const text = await file.text();
-  const parsed = tryParseJSON(text);
-  if(!parsed.ok){ alert("فایل JSON معتبر نیست: " + parsed.error); return; }
-  drawerText.value = JSON.stringify(parsed.data, null, 2);
-});
-
-btnReset.addEventListener("click", ()=>{
-  if(!confirm("ریست تغییرات؟ تمام ویرایش‌های ذخیره‌شده + تنظیمات امتیاز پاک می‌شود.")) return;
-  localStorage.removeItem(LS_KEY);
-  localStorage.removeItem(LS_SCORE_CFG);
-  localStorage.removeItem(LS_SCORES);
-  JOBS = structuredClone(JOBS_DEFAULT);
-  SCORE_CFG = { csvUrl:"" };
-  SCORES = {};
-  alert("ریست شد ✅");
-  renderChart();
-});
-
-btnSaveScoreConfig.addEventListener("click", ()=>{
-  SCORE_CFG.csvUrl = (scoreCsvUrl.value || "").trim();
-  saveScoreCfg();
-  alert("تنظیمات امتیاز ذخیره شد ✅");
-});
-
-btnFetchScores.addEventListener("click", async ()=>{
-  SCORE_CFG.csvUrl = (scoreCsvUrl.value || "").trim();
-  saveScoreCfg();
-  await fetchScores();
-});
-
-/* =========================
-   12) Wire interactions + team duties
-========================= */
-function wireInteractions(){
+/* ========= Wire interactions ========= */
+function wire(){
   document.querySelectorAll(".card.person").forEach(card=>{
-    card.addEventListener("click", ()=> openModalForPerson(card.dataset.id));
-    card.addEventListener("keydown", (e)=>{
-      if(e.key === "Enter" || e.key === " "){
-        e.preventDefault();
-        openModalForPerson(card.dataset.id);
-      }
+    card.addEventListener("click", ()=> openModal(card.dataset.id));
+    card.addEventListener("keydown",(e)=>{
+      if(e.key==="Enter" || e.key===" "){ e.preventDefault(); openModal(card.dataset.id); }
     });
   });
 
-  document.querySelectorAll(".teamDutiesBtn").forEach(btn=>{
-    btn.addEventListener("click", (e)=>{
+  document.querySelectorAll(".btnTiny").forEach(btn=>{
+    btn.addEventListener("click",(e)=>{
       e.stopPropagation();
       const teamKey = btn.dataset.team;
+      // open modal with any person from that team (or top)
       let id = "top";
       if(teamKey !== "top"){
-        const found = Object.values(CHART.people).find(p => p.team === teamKey);
+        const found = Object.values(CHART.people).find(p=>p.team===teamKey);
         id = found?.id || "top";
       }
-      openModalForPerson(id);
+      openModal(id);
       setActiveTab("tab-team");
     });
   });
 }
 
-/* =========================
-   13) Apply scores to cards + modal
-========================= */
+/* ========= Scores UI ========= */
 function applyScoresToUI(){
   document.querySelectorAll(".scorePill").forEach(el=>{
     const id = el.getAttribute("data-score-id");
@@ -1902,62 +1461,71 @@ function applyScoresToUI(){
   });
 }
 
-/* =========================
-   14) Search
-========================= */
-const searchInput = document.getElementById("searchInput");
-const searchHint = document.getElementById("searchHint");
-
+/* ========= Search ========= */
 let searchTerm = "";
-
-function norm(s){
-  return String(s||"")
-    .toLowerCase()
-    .replace(/\s+/g," ")
-    .trim();
-}
-
 function applySearch(){
   const q = norm(searchTerm);
   const cards = [...document.querySelectorAll(".card.person")];
-
   if(!q){
     cards.forEach(c=>{ c.classList.remove("hidden","hit"); });
-    searchHint.textContent = `${cards.length} نفر`;
     return;
   }
-
-  let hits = 0;
   cards.forEach(c=>{
     const hay = norm((c.dataset.name||"") + " " + (c.dataset.role||"") + " " + (c.dataset.team||""));
     const ok = hay.includes(q);
     c.classList.toggle("hidden", !ok);
     c.classList.toggle("hit", ok);
-    if(ok) hits++;
   });
-  searchHint.textContent = `${hits} نتیجه`;
 }
 
+/* Search icon toggle */
+const searchWrap = document.getElementById("searchWrap");
+const searchBtn = document.getElementById("searchBtn");
+const searchInput = document.getElementById("searchInput");
+
+searchBtn.addEventListener("click", ()=>{
+  searchWrap.classList.toggle("open");
+  if(searchWrap.classList.contains("open")){
+    setTimeout(()=> searchInput.focus(), 50);
+  }else{
+    searchInput.value = "";
+    searchTerm = "";
+    applySearch();
+  }
+});
 searchInput.addEventListener("input", ()=>{
   searchTerm = searchInput.value;
   applySearch();
-  // redraw lines might be off; keep minimal
+});
+document.addEventListener("keydown",(e)=>{
+  if(e.key === "/" && !modalBack.style.display){
+    e.preventDefault();
+    searchWrap.classList.add("open");
+    setTimeout(()=> searchInput.focus(), 50);
+  }
 });
 
-/* =========================
-   15) Export PNG
-========================= */
-const btnExportPng = document.getElementById("btnExportPng");
-btnExportPng.addEventListener("click", async ()=>{
+/* ========= Buttons ========= */
+document.getElementById("btnScores").addEventListener("click", fetchScores);
+
+document.getElementById("btnExportPng").addEventListener("click", async ()=>{
   const stage = document.getElementById("stage");
-  // temporarily remove highlights for nicer export? keep as-is.
   try{
-    // Improve image clarity
+    // wait all images in stage
+    const imgs = Array.from(stage.querySelectorAll("img"));
+    await Promise.all(imgs.map(img=>{
+      if(img.complete && img.naturalWidth>0) return Promise.resolve();
+      return new Promise(res=>{ img.onload = img.onerror = ()=>res(); });
+    }));
+
     const canvas = await html2canvas(stage, {
       backgroundColor: "#ffffff",
       scale: 2,
-      useCORS: true
+      useCORS: true,
+      allowTaint: false,
+      imageTimeout: 15000
     });
+
     const url = canvas.toDataURL("image/png");
     const a = document.createElement("a");
     a.href = url;
@@ -1966,29 +1534,20 @@ btnExportPng.addEventListener("click", async ()=>{
     a.click();
     a.remove();
   }catch(e){
-    alert("خروجی تصویر ناموفق بود. اگر با file:// باز کردی، لطفاً با Live Server اجرا کن. خطا: " + (e?.message||e));
+    alert("خروجی تصویر ناموفق بود. اگر عکسی از دامنه بیرونی داری، باید روی همان دامنه CORS داشته باشد.\nخطا: " + (e?.message || e));
   }
 });
 
-/* =========================
-   16) Fetch scores on load (optional)
-========================= */
-async function autoLoadScores(){
-  // If we have cached scores, show them immediately.
-  applyScoresToUI();
-  // If csvUrl exists, you can uncomment next line to auto-refresh on each open:
-  // if((SCORE_CFG.csvUrl||"").trim()) await fetchScores();
-}
-
-/* =========================
-   17) Init
-========================= */
-renderChart();
-autoLoadScores();
-
+/* ========= Init ========= */
+render();
 window.addEventListener("load", redrawLines);
-window.addEventListener("resize", redrawLines);
-document.addEventListener("load", (e)=>{ if(e.target?.tagName==="IMG") setTimeout(redrawLines, 10); }, true);
+window.addEventListener("resize", ()=> requestAnimationFrame(redrawLines));
+
+// redraw lines after any img loads
+document.addEventListener("load",(e)=>{
+  if(e.target?.tagName === "IMG") requestAnimationFrame(redrawLines);
+}, true);
 </script>
+
 </body>
 </html>
